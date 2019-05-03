@@ -85,7 +85,7 @@ function doGenerate () {
 }
 
 function generateStyleCSS () {
-  let data = '/*\n  Theme Name: ' + config.name + '\n  Version: 0.1.0\n  Author: ' + config.author.name + '\n  Description: A Timber wordpress theme using tailwindcss.\n  */\n\n@import "./css/theme.css"'
+  let data = '/*\n  Theme Name: ' + config.name + '\n  Version: 0.1.0\n  Author: ' + config.author.name + '\n  Description: A Timber wordpress theme using tailwindcss.\n  */'
 
   let file = 'style.css'
 

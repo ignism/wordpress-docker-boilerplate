@@ -1,10 +1,10 @@
 const path = require('path')
+const glob = require('glob')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const config = require(path.resolve(__dirname, 'config/theme.json'))
-
-
 
 module.exports = (env, options) => {
   console.log('env: ')
@@ -41,7 +41,7 @@ module.exports = (env, options) => {
               options: {
                 config: {
                   ctx: {
-                    purgecss: options.mode === 'production' ? { content: ['./**/*.twig'] } : false,
+                    purgecss: options.mode === 'production' ? { content: ['./theme/public/templates/**/*.twig'] } : false,
                     cssnano: options.mode === 'production' ? {} : false
                   }
                 }

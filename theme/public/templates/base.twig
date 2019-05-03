@@ -1,5 +1,5 @@
 {% block html_head_container %}
-  {% include 'header.twig' %}
+  {% include "head.twig" %}
   {% block head %}{% endblock %}
 </head>
 {% endblock %}
@@ -14,7 +14,7 @@
       </h1>
       <nav id="nav-main" class="nav-main" role="navigation">
         {% include "partials/menu.twig" with {
-          'menu' : menu.get_items
+          "menu" : menu.get_items
         } %}
       </nav>
       <!-- #nav -->
@@ -33,11 +33,7 @@
   </div>
 </section>
 
-{% block footer %}
-  <footer id="footer">
-    {% include 'footer.twig' %}
-  </footer>
-  {{ function('wp_footer') }}
-{% endblock %}
+{% block footer %}{% endblock %}
+{{ function('wp_footer') }}
 </body>
 </html>

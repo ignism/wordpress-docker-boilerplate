@@ -6,13 +6,15 @@
   "scripts": {
     "config": "node config/theme-config.js",
     "dev": "webpack --mode development",
-    "build": "webpack --mode=production",
+    "watch": "webpack --mode development --watch",
+    "build": "webpack --mode production",
     "postinstall": "./node_modules/.bin/tailwind init; cd theme; composer i"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@fullhuman/postcss-purgecss": "^1.2.0",
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "^1.7.0",
