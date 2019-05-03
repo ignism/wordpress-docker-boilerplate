@@ -1,0 +1,93 @@
+---
+CSS:
+  beautifiers:
+    - Prettier
+    - Pretty Diff
+    - JS-Beautify
+  indent_size: 2
+  indent_style: space
+  quotes: single
+  max_preserve_newlines: 2
+  space_after_anon_function: true
+  end_with_semicolon: true
+HTML:
+  beautifiers:
+    - Pretty Diff
+    - JS-Beautify
+  indent_size: 2
+  indent_style: space
+  quotes: double
+  max_preserve_newlines: 1
+  space_after_anon_function: true
+  brace_style: collapse
+  indent_inner_html: false
+  newline_before_tags:
+    - head
+    - body
+    - /html
+JSON:
+  beautifiers:
+    - Prettier
+    - Pretty Diff
+    - JS-Beautify
+  indent_size: 2
+  indent_style: space
+  quotes: double
+  max_preserve_newlines: 2
+  space_after_anon_function: true
+  end_with_semicolon: false
+  arrow_parens: always
+  object_curly_spacing: true
+  brace_style: collapse
+  space_in_empty_paren: false
+  unindent_chained_methods: false
+JavaScript:
+  beautifiers:
+    - Prettier
+    - Pretty Diff
+    - JS-Beautify
+    - ESLint
+  indent_size: 2
+  indent_style: space
+  quotes: single
+  max_preserve_newlines: 2
+  multiline_ternary: never
+  space_after_anon_function: true
+  end_with_semicolon: false
+  arrow_parens: always
+  object_curly_spacing: true
+  brace_style: collapse
+  space_in_empty_paren: false
+  unindent_chained_methods: false
+PHP:
+  beautifiers:
+    - PHP-CS-Fixer
+Twig:
+  beautifiers:
+    - Pretty Diff
+  indent_size: 2
+  indent_style: space
+  quotes: double
+  max_preserve_newlines: 1
+  space_after_anon_function: true
+TypeScript:
+  beautifiers:
+    - Prettier
+    - Pretty Diff
+  indent_size: 2
+  indent_style: space
+  quotes: single
+  max_preserve_newlines: 2
+  multiline_ternary: never
+  space_after_anon_function: true
+  end_with_semicolon: false
+  arrow_parens: always
+  object_curly_spacing: true
+Vue:
+  beautifiers:
+    - Prettier
+  indent_size: 2
+  indent_style: space
+  end_with_semicolon: false
+  arrow_parens: always
+  object_curly_spacing: true
