@@ -1,0 +1,53 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" {{ site.language_attributes }}> <![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" {{ site.language_attributes }}> <![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" {{ site.language_attributes }}> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" {{ site.language_attributes }}>
+  <!--<![endif]-->
+  <head>
+    <meta charset="{{ site.charset }}"/>
+
+    <title>
+      {% if wp_title %}
+        {{ wp_title ~ ' | ' ~ site.name }}
+      {% else %}
+        {{ site.name }}
+      {% endif %}
+    </title>
+
+    {% include "partials/metadata.html.twig" %}
+
+    {{function('wp_head')}}
+
+    {% block head %}{% endblock %}
+  </head>
+
+<body class="{{body_class}}">
+
+  {% block header %}
+    <header class="header">
+      {% block nav %}
+        <nav id="nav-main" class="nav-main" role="navigation">
+          {% include "partials/menu.html.twig" with {
+            "menu" : menu.get_items
+          } %}
+        </nav>
+      {% endblock %}
+    </header>
+  {% endblock %}
+
+  {% block main %}
+    <main class="main">
+      <h1>{{title}}</h1>
+
+      <div class="wrapper">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+  {% endblock %}
+
+  {% block footer %}{% endblock %}
+  {{ function('wp_footer') }}
+</body>
+</html>

@@ -36,6 +36,7 @@ class BoilerplateClass extends Timber\Site
         add_filter('timber_context', array($this, 'add_to_context'));
         add_filter('get_twig', array($this, 'add_to_twig'));
         add_action('init', array($this, 'register_post_types'));
+        add_action('init', array($this, 'register_advanced_custom_fields'));
         add_action('init', array($this, 'register_taxonomies'));
         add_action('wp_enqueue_scripts', array( $this, 'load_scripts' ));
         parent::__construct();
@@ -44,6 +45,12 @@ class BoilerplateClass extends Timber\Site
     /** This is where you can register custom post types. */
     public function register_post_types()
     {
+        require get_template_directory() . '/includes/post-types.php';
+    }
+
+    public function register_advanced_custom_fields()
+    {
+        require get_template_directory() . '/includes/advanced-custom-fields.php';
     }
 
     /** This is where you can register custom taxonomies. */

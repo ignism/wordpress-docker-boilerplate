@@ -1,4 +1,5 @@
 module.exports = ({ options }) => ({
+  // syntax: 'postcss-scss',
   plugins: {
     'postcss-import': {},
     'tailwindcss': 'tailwind.js',

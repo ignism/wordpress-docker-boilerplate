@@ -1,0 +1,12 @@
+{% extends "partials/base.html.twig" %}
+
+{% block content %}
+
+    <h2>{{ foo }}</h2>
+    <p>{{ qux }}</p>
+
+    {% for post in posts %}
+        {% include ['posts/post-'~post.post_type~'.twig', 'posts/post.html.twig'] %}
+    {% endfor %}
+
+{% endblock %}

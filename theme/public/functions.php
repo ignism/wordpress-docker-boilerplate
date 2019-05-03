@@ -36,6 +36,7 @@ class TimberTailwind extends Timber\Site
         add_filter('timber_context', array($this, 'add_to_context'));
         add_filter('get_twig', array($this, 'add_to_twig'));
         add_action('init', array($this, 'register_post_types'));
+        add_action('init', array($this, 'register_advanced_custom_fields'));
         add_action('init', array($this, 'register_taxonomies'));
         add_action('wp_enqueue_scripts', array( $this, 'load_scripts' ));
         parent::__construct();
@@ -44,6 +45,12 @@ class TimberTailwind extends Timber\Site
     /** This is where you can register custom post types. */
     public function register_post_types()
     {
+        require get_template_directory() . '/includes/post-types.php';
+    }
+
+    public function register_advanced_custom_fields()
+    {
+        require get_template_directory() . '/includes/advanced-custom-fields.php';
     }
 
     /** This is where you can register custom taxonomies. */
@@ -57,9 +64,7 @@ class TimberTailwind extends Timber\Site
      */
     public function add_to_context($context)
     {
-        $context['foo'] = 'bar';
-        $context['stuff'] = 'I am a value set in your functions.php file';
-        $context['notes'] = 'These values are available everytime you call Timber::get_context();';
+        $context['value'] = 'I am a value set in your functions.php file';
         $context['menu'] = new Timber\Menu();
         $context['site'] = $this;
 
@@ -120,7 +125,7 @@ class TimberTailwind extends Timber\Site
      *
      * @param string $text being 'foo', then returned 'foo bar!'
      */
-    public function myfoo($text)
+    public function my_filter($text)
     {
         $text .= ' bar!';
 
@@ -134,7 +139,7 @@ class TimberTailwind extends Timber\Site
     public function add_to_twig($twig)
     {
         $twig->addExtension(new Twig_Extension_StringLoader());
-        $twig->addFilter(new Twig_SimpleFilter('myfoo', array($this, 'myfoo')));
+        $twig->addFilter(new Twig_SimpleFilter('my_filter', array($this, 'my_filter')));
 
         return $twig;
     }
@@ -144,10 +149,6 @@ class TimberTailwind extends Timber\Site
         wp_enqueue_style('theme', get_template_directory_uri() . '/css/theme.css');
         wp_enqueue_style('fonts', get_template_directory_uri() . '/css/fonts.css');
         wp_enqueue_script('theme', get_template_directory_uri() . '/js/theme.js', array(), '1.0.0', true);
-    }
-
-    public function loadStyles()
-    {
     }
 }
 new TimberTailwind();

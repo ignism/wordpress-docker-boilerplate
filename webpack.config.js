@@ -30,12 +30,13 @@ module.exports = (env, options) => {
           }
         },
         {
-          test: /\.css$/,
+          test: /\.(css|scss)$/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
             },
             'css-loader',
+            'sass-loader',
             {
               loader: 'postcss-loader',
               options: {
@@ -46,9 +47,16 @@ module.exports = (env, options) => {
                   }
                 }
               }
-            }
+            },
           ]
-        }
+        },
+        // {
+        //   test: /\.scss$/,
+        //   use: [
+        //       "css-loader", // translates CSS into CommonJS
+        //       "sass-loader" // compiles Sass to CSS, using Node Sass by default
+        //   ]
+        // }
       ]
     },
     plugins: [

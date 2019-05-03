@@ -32,6 +32,7 @@ services:
       - '8080:80'
     restart: always
     volumes: 
+      - ./www:/var/www/html
       - ./wp-content/themes:/var/www/html/wp-content/themes
       - ./wp-content/uploads:/var/www/html/wp-content/uploads
       - ./wp-content/plugins:/var/www/html/wp-content/plugins
