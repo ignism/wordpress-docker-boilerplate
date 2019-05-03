@@ -1,0 +1,31 @@
+{
+  "name": "wordpress-docker-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "config": "node config/theme-config.js",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode=production",
+    "postinstall": "./node_modules/.bin/tailwind init; cd theme; composer i"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "autoprefixer": "^9.3.1",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^5.0.3",
+    "css-loader": "^1.0.0",
+    "cssnano": "^4.1.7",
+    "mini-css-extract-plugin": "^0.4.4",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "slug": "^1.1.0",
+    "tailwindcss": "^0.6.6",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
