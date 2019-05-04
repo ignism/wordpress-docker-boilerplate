@@ -23,31 +23,34 @@
     {% block head %}{% endblock %}
   </head>
 
-<body class="{{body_class}}">
+  <body class="{{body_class}}">
 
-  {% block header %}
-    <header class="header">
-      {% block nav %}
-        <nav id="nav-main" class="nav-main" role="navigation">
-          {% include "partials/menu.html.twig" with {
-            "menu" : menu.get_items
-          } %}
-        </nav>
-      {% endblock %}
-    </header>
-  {% endblock %}
+    {% block header %}
+      <header class="container my-8">
+        {% block nav %}
+          <nav id="nav-main" class="nav-main" role="navigation">
+            {% include "partials/menu.html.twig" with {
+              "menu" : menu.get_items
+            } %}
+          </nav>
+        {% endblock %}
+      </header>
+    {% endblock %}
 
-  {% block main %}
-    <main class="main">
-      <h1>{{title}}</h1>
+    {% block main %}
+      <main class="container section">
+        <div class="row">
+          <div class="col">
+            <div class="col-content">
+              <h1>{{title}}</h1>
+            </div>
+          </div>
+        </div>
+      </main>
+    {% endblock %}
 
-      <div class="wrapper">
-        {% block content %}{% endblock %}
-      </div>
-    </main>
-  {% endblock %}
+    {% block footer %}{% endblock %}
 
-  {% block footer %}{% endblock %}
-  {{ function('wp_footer') }}
-</body>
+    {{ function('wp_footer') }}
+  </body>
 </html>

@@ -1,8 +1,14 @@
-<article class="tease tease-{{ post.post_type }}" id="tease-{{ post.ID }}">
-    {% block content %}
-        <h2 class="h2">
+<article class="container section post-{{ post.post_type }}" id="post-{{ post.ID }}">
+  <div class="row">
+    <div class="col">
+      <div class="col-content bg-grey-lightest">
+        {% block content %}
+          <h2 class="h2">
             <a href="{{ post.link }}">{{ post.title }}</a>
-        </h2>
-        <p>{{ post.content }}</p>
-    {% endblock %}
+          </h2>
+          <p>{{ post.content }}</p>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
 </article>

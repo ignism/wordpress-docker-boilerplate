@@ -1,7 +1,13 @@
+$section-space: 16;
 $gutter: 4;
+$column-space: 4;
+
+.container {
+    @apply max-w-5xl mx-auto;
+}
 
 .section {
-    @apply max-w-5xl mx-auto;
+    @apply my-#{$section-space};
 }
 
 .row {
@@ -12,6 +18,6 @@ $gutter: 4;
     @apply px-#{$gutter};
 
     &-content {
-        @apply bg-black text-grey;
+        @apply p-#{$column-space};
     }
 }

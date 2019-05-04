@@ -1,26 +1,6 @@
 {% extends "partials/base.html.twig" %}
 
-{% block content %}
-
-    <div class="section">
-        <div class="row">
-            <div class="col w-1/3">
-                <div class="col-content">
-                <h1>HEADER ONE</h1>
-                </div>
-            </div>
-            <div class="col w-1/3">
-                <div class="col-content">
-                <h1>HEADER TWO</h1>
-                </div>
-            </div>
-            <div class="col w-1/3">
-                <div class="col-content">
-                <h1>HEADER THREE</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block main %}
     
     {% for post in posts %}
         {% include ['posts/post-'~post.post_type~'.twig', 'posts/post.html.twig'] %}
