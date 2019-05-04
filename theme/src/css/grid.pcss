@@ -1,0 +1,17 @@
+$gutter: 4;
+
+.section {
+    @apply max-w-5xl mx-auto;
+}
+
+.row {
+    @apply flex -mx-#{$gutter};
+}
+
+.col {
+    @apply px-#{$gutter};
+
+    &-content {
+        @apply bg-black text-grey;
+    }
+}

@@ -2,4 +2,4 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import "scss/base.scss";
+@import "css/grid.pcss";
