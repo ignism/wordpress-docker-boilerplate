@@ -1,12 +1,13 @@
 <article class="container section post-{{ post.post_type }}" id="post-{{ post.ID }}">
   <div class="row">
     <div class="col">
-      <div class="col-content bg-grey-lightest">
+      <div class="col-content bg-grey-light">
         {% block content %}
           <h2 class="h2">
-            <a href="{{ post.link }}">{{ post.title }}</a>
+            {{ post.title }}
           </h2>
           <p>{{ post.content }}</p>
+          <button class="button">Read more</button>
         {% endblock %}
       </div>
     </div>

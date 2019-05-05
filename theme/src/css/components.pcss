@@ -1,0 +1,18 @@
+button,
+.button {
+    @apply px-4 py-2 bg-grey mt-4;
+    transition: 200ms ease-out;
+    
+    &:hover {
+        @apply shadow-lg;
+        transform: translateY(-0.125em);
+    }
+
+    &:focus {
+        @apply bg-grey-dark;
+        outline: none;
+        box-shadow: none;
+        transform: translateY(0);
+    }
+}
+
