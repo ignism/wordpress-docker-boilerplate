@@ -15,7 +15,6 @@ services:
     depends_on:
       - db
     image: phpmyadmin/phpmyadmin
-    restart: always
     ports:
       - '8081:80'
     environment:
@@ -30,7 +29,6 @@ services:
     image: wordpress:latest
     ports:
       - '8080:80'
-    restart: always
     volumes: 
       - ./www:/var/www/html
       - ./wp-content/themes:/var/www/html/wp-content/themes
