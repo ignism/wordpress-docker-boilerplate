@@ -1,5 +1,4 @@
 const path = require('path')
-const glob = require('glob')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -23,54 +22,44 @@ module.exports = (env, options) => {
       filename: 'js/[name].js'
     },
     module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader'
-          }
+      rules: [{
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }, {
+        test: /\.(css|pcss)$/,
+        use: [{
+          loader: MiniCssExtractPlugin.loader
         },
-        {
-          test: /\.(css|pcss)$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader
-            },
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                config: {
-                  ctx: {
-                    purgecss:
-                      options.mode === 'production'
-                        ? {
-                            content: ['./theme/public/templates/**/*.twig']
-                          }
-                        : false,
-                    cssnano: options.mode === 'production' ? {} : false
-                  }
-                }
+        'css-loader', {
+          loader: 'postcss-loader',
+          options: {
+            config: {
+              ctx: {
+                purgecss: options.mode === 'production' ? {
+                  content: ['./theme/public/templates/**/*.twig']
+                } : false,
+                cssnano: options.mode === 'production' ? {} : false
               }
             }
-          ]
-        },
-        {
-          test: /\.vue$/,
-          loader: 'vue-loader'
-        },
-        {
-          test: /\.(svg|png|jpg)$/,
-          use: {
-            loader: "file-loader",
-            options: {
-              name: "images/[name].[ext]",
-              publicPath: '../',
-            },
-          },
-        },
-      ]
+          }
+        }
+        ]
+      }, {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }, {
+        test: /\.(svg|png|jpg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'images/[name].[ext]',
+            publicPath: '../'
+          }
+        }
+      }]
     },
     plugins: [
       new VueLoaderPlugin(),
@@ -78,19 +67,14 @@ module.exports = (env, options) => {
         filename: 'css/[name].css',
         chunkFilename: 'css/[id].css'
       }),
-      new CleanWebpackPlugin(
-        path.resolve(__dirname, 'wp-content/themes/', config.slug)
-      ),
-      new CopyWebpackPlugin([
-        {
-          from: 'theme/public',
-          to: ''
-        },
-        {
-          from: 'theme/vendor',
-          to: 'vendor'
-        }
-      ])
+      new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes/', config.slug)),
+      new CopyWebpackPlugin([{
+        from: 'theme/public',
+        to: ''
+      }, {
+        from: 'theme/vendor',
+        to: 'vendor'
+      }])
     ]
   }
 }
