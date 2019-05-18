@@ -16,7 +16,7 @@ module.exports = (env, options) => {
   return {
     entry: {
       theme: './theme/src/index.js',
-      about: './theme/src/about.js'
+      app: './theme/src/app.js'
     },
     output: {
       path: path.resolve(__dirname, 'wp-content/themes/', config.slug),
@@ -59,7 +59,17 @@ module.exports = (env, options) => {
         {
           test: /\.vue$/,
           loader: 'vue-loader'
-        }
+        },
+        {
+          test: /\.(svg|png|jpg)$/,
+          use: {
+            loader: "file-loader",
+            options: {
+              name: "images/[name].[ext]",
+              publicPath: '../',
+            },
+          },
+        },
       ]
     },
     plugins: [
