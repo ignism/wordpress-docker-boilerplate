@@ -3,6 +3,7 @@ const glob = require('glob')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const config = require(path.resolve(__dirname, 'config/theme.json'))
 
@@ -12,9 +13,10 @@ module.exports = (env, options) => {
   console.log('options: ')
   console.log(options)
 
-  return ({
-    entry: { 
-      theme: './theme/src/index.js' 
+  return {
+    entry: {
+      theme: './theme/src/index.js',
+      about: './theme/src/about.js'
     },
     output: {
       path: path.resolve(__dirname, 'wp-content/themes/', config.slug),
@@ -33,7 +35,7 @@ module.exports = (env, options) => {
           test: /\.(css|pcss)$/,
           use: [
             {
-              loader: MiniCssExtractPlugin.loader,
+              loader: MiniCssExtractPlugin.loader
             },
             'css-loader',
             {
@@ -41,33 +43,44 @@ module.exports = (env, options) => {
               options: {
                 config: {
                   ctx: {
-                    purgecss: options.mode === 'production' ? { content: ['./theme/public/templates/**/*.twig'] } : false,
+                    purgecss:
+                      options.mode === 'production'
+                        ? {
+                            content: ['./theme/public/templates/**/*.twig']
+                          }
+                        : false,
                     cssnano: options.mode === 'production' ? {} : false
                   }
                 }
               }
-            },
+            }
           ]
         },
-        // {
-        //   test: /\.scss$/,
-        //   use: [
-        //       "css-loader", // translates CSS into CommonJS
-        //       "sass-loader" // compiles Sass to CSS, using Node Sass by default
-        //   ]
-        // }
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader'
+        }
       ]
     },
     plugins: [
+      new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',
         chunkFilename: 'css/[id].css'
       }),
-      new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes/', config.slug)),
+      new CleanWebpackPlugin(
+        path.resolve(__dirname, 'wp-content/themes/', config.slug)
+      ),
       new CopyWebpackPlugin([
-        {from: 'theme/public', to: ''},
-        {from: 'theme/vendor', to: 'vendor'}
-      ]),
+        {
+          from: 'theme/public',
+          to: ''
+        },
+        {
+          from: 'theme/vendor',
+          to: 'vendor'
+        }
+      ])
     ]
-  })
+  }
 }

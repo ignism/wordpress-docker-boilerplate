@@ -6,8 +6,14 @@
 
   <h1>About</h1>
 
+  <div id="about"></div>
+
   {% for post in posts %}
     {% include ['posts/post-'~post.post_type~'.twig', 'posts/post.html.twig'] %}
   {% endfor %}
 
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ theme.link }}/js/about.js"></script>
 {% endblock %}

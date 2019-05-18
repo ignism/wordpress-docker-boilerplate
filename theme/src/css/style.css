@@ -2,6 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import "css/components.pcss";
-@import "css/elements.pcss";
-@import "css/grid.pcss";
+@import "./components.pcss";
+@import "./elements.pcss";
+@import "./grid.pcss";

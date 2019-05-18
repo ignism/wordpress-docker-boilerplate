@@ -9,5 +9,23 @@
   {% for post in posts %}
     {% include ['posts/post-'~post.post_type~'.twig', 'posts/post.html.twig'] %}
   {% endfor %}
+  
+
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col w-full">
+          <div class="counter"></div>
+        </div>
+      </div>
+      <div class="row">
+        {% for i in 1..3 %}
+          <div class="col w-1/3">
+            <button class="button"></button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
