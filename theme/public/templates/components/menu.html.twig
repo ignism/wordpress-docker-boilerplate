@@ -1,0 +1,20 @@
+{% if menu %}
+
+  <ul class="list-reset">
+
+    {% for item in menu %}
+
+      <li class="{{ item.classes | join(' ') }}">
+        <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+
+        {% include "components/menu.html.twig" with {
+          "menu" : item.get_children
+        } %}
+
+      </li>
+
+    {% endfor %}
+
+  </ul>
+
+{% endif %}

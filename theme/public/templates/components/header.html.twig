@@ -1,0 +1,17 @@
+{% embed "layout/section.html.twig" with {
+  tag : "header"
+} %}
+
+  {% block header %}
+
+    <nav id="nav-main" class="nav-main" role="navigation">
+
+      {% include "components/menu.html.twig" with {
+        "menu" : menu.get_items
+      } %}
+
+    </nav>
+
+  {% endblock %}
+
+{% endembed %}

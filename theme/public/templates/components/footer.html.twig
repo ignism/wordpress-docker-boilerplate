@@ -1,0 +1,14 @@
+{% embed "layout/section.html.twig" with {
+  tag : "footer"
+} %}
+
+  {% block footer %}
+
+    <p>
+      &copy;
+      {{ "now"|date("Y") }}
+    </p>
+
+  {% endblock %}
+
+{% endembed %}

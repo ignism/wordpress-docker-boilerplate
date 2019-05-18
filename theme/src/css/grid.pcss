@@ -1,24 +1,27 @@
-$section-space: 16;
-$gutter: 4;
-$column-space: 4;
-$site-gutter: 4;
+$section-space: 40px;
+$gutter: 20px;
+$site-max-width: 100rem;
+$site-offset: 10px;
 
 .container {
-    @apply max-w-5xl mx-auto px-#{$site-gutter};
+  @apply mx-auto;
+  max-width: $site-max-width;
+  padding-left: $site-offset;
+  padding-right: $site-offset;
 }
 
 .section {
-    @apply my-#{$section-space};
+  padding-top: $section-space;
+  padding-bottom: $section-space;
 }
 
 .row {
-    @apply flex -mx-#{$gutter};
+  @apply flex;
+  margin-left: calc($gutter / -2);
+  margin-right: calc($gutter / -2);
 }
 
 .col {
-    @apply px-#{$gutter};
-
-    &-content {
-        @apply p-#{$column-space};
-    }
+  padding-left: calc($gutter / 2);
+  padding-right: calc($gutter / 2);
 }

@@ -1,0 +1,25 @@
+{% if tag == "footer" %}
+  <footer class="section bg-black text-white">
+    <div class="container">
+
+      {% block footer %}{% endblock %}
+
+    </div>
+  </footer>
+{% elseif tag == "header" %}
+  <header class="section">
+    <div class="container">
+
+      {% block header %}{% endblock %}
+
+    </div>
+  </header>
+{% else %}
+  <section class="section">
+    <div class="container">
+
+      {% block section %}{% endblock %}
+
+    </div>
+  </section>
+{% endif %}
