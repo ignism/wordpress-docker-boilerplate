@@ -1,7 +1,6 @@
-@import "tailwindcss/preflight";
+@import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
 @import "./components.pcss";
 @import "./elements.pcss";
 @import "./grid.pcss";

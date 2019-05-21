@@ -4,17 +4,30 @@
 
 {% block main %}
 
+  {% embed "layout/section.html.twig" %}
+
+      {% block section %}
+
+        {% include "components/figure.html.twig" with {
+          figure_class: ['w-1/3', 'landscape'],
+        } %}
+        
+      {% endblock %}
+
+    {% endembed %}
+
   {% for post in posts %}
 
     {% embed "layout/section.html.twig" %}
 
       {% block section %}
+
         <a href="{{ post.link }}">
           <h2>{{ post.title }}</h2>
         </a>
 
       {% endblock %}
-
+      
     {% endembed %}
 
   {% endfor %}

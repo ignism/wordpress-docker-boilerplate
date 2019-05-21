@@ -1,0 +1,9 @@
+{% if img_src is not defined %}
+
+  {% set img_src = "https://source.unsplash.com/random" %}
+  
+{% endif %}
+
+<figure class="{{ figure_class|join(' ') }}">
+  <img src="{{ img_src }}" alt="">
+</figure>

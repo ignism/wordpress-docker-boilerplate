@@ -1,10 +1,10 @@
 {% if menu %}
 
-  <ul class="list-reset">
+  <ul class="list-reset flex">
 
     {% for item in menu %}
 
-      <li class="{{ item.classes | join(' ') }}">
+      <li class="{{ item.classes | join(' ') }} ml-4">
         <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
 
         {% include "components/menu.html.twig" with {

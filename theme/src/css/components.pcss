@@ -1,6 +1,6 @@
 button,
 .button {
-    @apply px-4 py-2 bg-grey mt-4;
+    @apply px-4 py-2 bg-gray-400 mt-4;
     transition: 200ms ease-out;
     
     &:hover {
@@ -9,10 +9,30 @@ button,
     }
 
     &:focus {
-        @apply bg-grey-dark;
+        @apply bg-gray-600;
         outline: none;
         box-shadow: none;
         transform: translateY(0);
     }
 }
 
+figure {
+  @apply relative;
+
+  img {
+    @apply absolute w-full h-full;
+    object-fit: cover;
+  }
+
+  &.portrait::after {
+    content: '';
+    display: block;
+    padding-top: 150%;
+  }
+
+  &.landscape::after {
+    content: '';
+    display: block;
+    padding-top: 66.66667%;
+  }
+}

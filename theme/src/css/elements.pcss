@@ -1,16 +1,30 @@
-body, html {
-    @apply text-black;
-    font-family: 'Inter', sans-serif;
-    
+$header-height: 8rem;
+
+body,
+html {
+  @apply text-black flex flex-col h-full;
+  font-family: 'Inter', sans-serif;
+}
+
+header.header-main {
+  @apply fixed w-full z-50;
+}
+
+main.main {
+  flex: 1 0 auto;
+}
+
+footer.footer-main {
+  flex-shrink: 0;
 }
 
 a,
-a:visited,
+a:active,
 a:focus,
-a:active {
-    @apply text-black no-underline;
+a:visited {
+  @apply text-black no-underline;
 }
 
 a:hover {
-    @apply underline;
+  @apply underline;
 }

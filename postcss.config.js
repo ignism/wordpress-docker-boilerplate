@@ -8,8 +8,9 @@ module.exports = ({ options }) => ({
     'postcss-import': {},
     'postcss-nested': {},
     'postcss-advanced-variables': {},
-    'tailwindcss': 'tailwind.js',
+    'tailwindcss': 'tailwind.config.js',
     'autoprefixer': {},
+    'postcss-object-fit-images': {},
     '@fullhuman/postcss-purgecss': options.purgecss,
     'cssnano': options.cssnano
   }

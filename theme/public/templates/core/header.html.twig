@@ -1,0 +1,24 @@
+{% embed "layout/section.html.twig" with {
+  section_tag : "header",
+  section_class: ['header-main', 'bg-gray-lighter', 'flex', 'items-end']
+} %}
+
+  {% block header %}
+
+    <nav id="nav-main" class="nav-main flex justify-between items-center" role="navigation">
+      <div class="branding">
+        <a href="{{ site.link }}">
+        <span class="font-bold text-xl uppercase tracking-widest">{{ site.title }}</span>
+        </a>
+      </div>
+      <div class="menu">
+        {% include "components/menu.html.twig" with {
+          "menu" : menu.get_items
+        } %}
+      </div>
+
+    </nav>
+
+  {% endblock %}
+
+{% endembed %}
