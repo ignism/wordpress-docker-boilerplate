@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -8,6 +9,7 @@ const config = require(path.resolve(__dirname, 'config/theme.json'))
 
 module.exports = {
   plugins: [
+    new VueLoaderPlugin(),
     new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),
     new CopyWebpackPlugin([{
       from: 'theme/public',
@@ -41,6 +43,9 @@ module.exports = {
           ]
         ]
       }
+    }, {
+      test: /\.vue$/,
+      loader: 'vue-loader'
     }, {
       test: /\.(css|pcss)$/,
 
@@ -77,7 +82,8 @@ module.exports = {
   },
 
   entry: {
-    theme: './theme/src/index.js'
+    theme: './theme/src/index.js',
+    app: './theme/src/app.js'
   },
 
   output: {

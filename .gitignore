@@ -2,7 +2,6 @@ vendor
 node_modules
 wp-content
 docker-runtime
-tailwind.js
 .vscode
 .DS_Store
 www
