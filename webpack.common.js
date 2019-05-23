@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const path = require('path')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -93,19 +92,19 @@ module.exports = {
 
   mode: 'development',
 
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          priority: -10,
-          test: /[\\/]node_modules[\\/]/
-        }
-      },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendors: {
+  //         priority: -10,
+  //         test: /[\\/]node_modules[\\/]/
+  //       }
+  //     },
 
-      chunks: 'async',
-      minChunks: 1,
-      minSize: 30000,
-      name: true
-    }
-  }
+  //     chunks: 'async',
+  //     minChunks: 1,
+  //     minSize: 30000,
+  //     name: true
+  //   }
+  // }
 }
