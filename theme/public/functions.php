@@ -3,6 +3,7 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 $timber = new Timber\Timber();
+$timmy = new Timmy\Timmy();
 
 if (!class_exists('Timber')) {
     add_action('admin_notices', function () {
@@ -35,6 +36,7 @@ class TimberTailwind extends Timber\Site
         add_action('after_setup_theme', array($this, 'theme_supports'));
         add_filter('timber_context', array($this, 'add_to_context'));
         add_filter('get_twig', array($this, 'add_to_twig'));
+        add_filter('timmy/sizes', array($this, 'timmy_sizes'));
         add_action('init', array($this, 'register_post_types'));
         add_action('init', array($this, 'register_advanced_custom_fields'));
         add_action('init', array($this, 'register_taxonomies'));
@@ -56,6 +58,7 @@ class TimberTailwind extends Timber\Site
     /** This is where you can register custom taxonomies. */
     public function register_taxonomies()
     {
+        
     }
 
     /** This is where you add some context
@@ -69,6 +72,19 @@ class TimberTailwind extends Timber\Site
         $context['site'] = $this;
 
         return $context;
+    }
+
+    public function timmy_sizes($sizes)
+    {
+        return array(
+            'custom-4' => array(
+                'resize' => array( 370 ),
+                'srcset' => array( 2 ),
+                'sizes' => '(min-width: 992px) 33.333vw, 100vw',
+                'name' => 'Width 1/4 fix',
+                'post_types' => array( 'post', 'page' ),
+            ),
+        );
     }
 
     public function theme_supports()
@@ -119,7 +135,10 @@ class TimberTailwind extends Timber\Site
             )
         );
         add_theme_support('menus');
+
+        set_post_thumbnail_size( 0, 0 );
     }
+    
 
     /** This Would return 'foo bar!'.
      *
@@ -149,6 +168,7 @@ class TimberTailwind extends Timber\Site
         wp_enqueue_style('theme', get_template_directory_uri() . '/css/theme.css');
         wp_enqueue_style('fonts', get_template_directory_uri() . '/css/fonts.css');
         wp_enqueue_script('theme', get_template_directory_uri() . '/js/theme.js', array(), '1.0.0', true);
+        wp_enqueue_script('head', get_template_directory_uri() . '/js/head.js', array(), '1.0.0', false);
     }
 }
 new TimberTailwind();

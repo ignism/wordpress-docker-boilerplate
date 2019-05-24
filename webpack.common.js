@@ -82,7 +82,9 @@ module.exports = {
 
   entry: {
     theme: './theme/src/index.js',
-    app: './theme/src/app.js'
+    head: './theme/src/head.js',
+    app: './theme/src/app.js',
+
   },
 
   output: {

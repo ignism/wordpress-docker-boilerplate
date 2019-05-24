@@ -2,8 +2,6 @@ import './css/style.css'
 import './js/main.js'
 import './js/images.js'
 
-
-
 // EXAMPLE: integrate Vue components
 //
 // import Vue from 'vue'

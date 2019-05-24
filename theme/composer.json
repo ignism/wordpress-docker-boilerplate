@@ -1,5 +1,6 @@
 {
     "require": {
-        "timber/timber": "^1.9"
+        "timber/timber": "^1.9",
+        "mindkomm/timmy": "^0.14.0"
     }
 }
