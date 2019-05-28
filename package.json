@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "browser-sync": "browser-sync start --proxy localhost:8080",
+    "build": "webpack --config webpack.prod.js",
     "config": "node config/theme-config.js",
     "dev": "webpack --config webpack.dev.js",
-    "watch": "webpack --config webpack.dev.js --watch",
-    "build": "webpack --config webpack.prod.js",
     "postinstall": "./node_modules/.bin/tailwind init; cd theme; composer i",
     "serve": "docker kill $(docker ps -q); docker-compose up -d",
-    "stop": "docker-compose down --volumes"
+    "stop": "docker-compose down --volumes",
+    "watch": "webpack --config webpack.dev.js --watch"
   },
   "author": "",
   "license": "ISC",
