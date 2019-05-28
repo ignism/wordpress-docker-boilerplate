@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "browser-sync": "browser-sync start --proxy localhost:8080",
     "config": "node config/theme-config.js",
     "dev": "webpack --config webpack.dev.js",
     "watch": "webpack --config webpack.dev.js --watch",
@@ -21,6 +22,7 @@
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.26.5",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^1.0.1",
