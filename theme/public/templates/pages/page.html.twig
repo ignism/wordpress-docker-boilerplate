@@ -8,11 +8,22 @@
 
     {% block section %}
 
-      <h2>{{ page.title }}</h2>
-      <p>{{ page.content }}</p>
+      <div class="row">
+        <div class="col w-full md:w-6/12">
+          {% include "components/image.html.twig" with {
+            figure_class : ["portrait"],
+            image: page.thumbnail,
+            size: "portrait-50vw"
+          } %}
+        </div>
+        <div class="col w-full md:w-6/12">
+          <h2>{{ page.title }}</h2>
+          <p>{{ page.content }}</p>
+        </div>
+      </div>
 
     {% endblock %}
-    
+
   {% endembed %}
 
 {% endblock %}

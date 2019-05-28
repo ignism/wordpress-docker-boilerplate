@@ -1,0 +1,13 @@
+{% if image is not defined %}
+
+  <figure class="{{ figure_class|join(' ') }}">
+    <img src="https://source.unsplash.com/random" alt="placeholder">
+  </figure>
+
+{% else %}
+
+  <figure class="{{ figure_class|join(' ') }}">
+    <img{{ image|get_timber_image_responsive(size) }}>
+  </figure>
+
+{% endif %}
