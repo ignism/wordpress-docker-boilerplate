@@ -58,7 +58,6 @@ class TimberTailwind extends Timber\Site
     /** This is where you can register custom taxonomies. */
     public function register_taxonomies()
     {
-        
     }
 
     /** This is where you add some context
@@ -77,12 +76,15 @@ class TimberTailwind extends Timber\Site
     public function timmy_sizes($sizes)
     {
         return array(
-            'custom-4' => array(
-                'resize' => array( 370 ),
-                'srcset' => array( 2 ),
-                'sizes' => '(min-width: 992px) 33.333vw, 100vw',
-                'name' => 'Width 1/4 fix',
-                'post_types' => array( 'post', 'page' ),
+            'portrait-50vw' => array(
+                'resize' => array(800, 1200),
+                'srcset' => array(0.5, 2, 3),
+                'sizes' => '(min-width: 640px) 50vw, 100vw'
+            ),
+            'landscape-100vw' => array(
+                'resize' => array(1600, 1066),
+                'srcset' => array(0.5, 2, 3),
+                'sizes' => '100vw'
             ),
         );
     }
@@ -136,7 +138,7 @@ class TimberTailwind extends Timber\Site
         );
         add_theme_support('menus');
 
-        set_post_thumbnail_size( 0, 0 );
+        set_post_thumbnail_size(0, 0);
     }
     
 
