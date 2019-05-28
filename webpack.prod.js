@@ -7,6 +7,6 @@ process.env.NODE_ENV = 'production'
 module.exports = merge(common, {
   mode: 'production',
   optimization: {
-    minimizer: [new UglifyJsPlugin()],
+    minimizer: [new UglifyJSPlugin()],
   },
 })

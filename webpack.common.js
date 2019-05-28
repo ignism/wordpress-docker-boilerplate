@@ -9,14 +9,14 @@ const config = require(path.resolve(__dirname, 'config/theme.json'))
 module.exports = {
   plugins: [
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),
-    new CopyWebpackPlugin([{
-      from: 'theme/public',
-      to: ''
-    }, {
-      from: 'theme/vendor',
-      to: 'vendor'
-    }]),
+    // new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),
+    // new CopyWebpackPlugin([{
+    //   from: 'theme/public',
+    //   to: ''
+    // }, {
+    //   from: 'theme/vendor',
+    //   to: 'vendor'
+    // }]),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -29,19 +29,9 @@ module.exports = {
     rules: [{
       test: /\.js$/,
 
-      include: [path.resolve(__dirname, 'src')],
+      include: [path.resolve(__dirname, 'theme', 'src')],
 
       loader: 'babel-loader',
-      options: {
-        plugins: ['syntax-dynamic-import'],
-        presets: [
-          [
-            '@babel/preset-env', {
-              modules: false
-            }
-          ]
-        ]
-      }
     }, {
       test: /\.vue$/,
       loader: 'vue-loader'
