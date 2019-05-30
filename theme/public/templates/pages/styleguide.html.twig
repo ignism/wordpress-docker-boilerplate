@@ -1,0 +1,156 @@
+{# Styleguide page #}
+
+{% extends "core/base.html.twig" %}
+
+{% block main %}
+
+  {% embed "layout/section.html.twig" %}
+
+    {% block section %}
+
+      <h2 class="text-gray-400 text-xl my-2">current screen size</h2>
+      <div class="row">
+        <div class="col w-full">
+          <div class="bg-purple-200  flex sm:hidden justify-center">
+            <div class="bg-purple-400 p-2 text-white">base
+              <span class="font-bold">mobile</span></div>
+          </div>
+          <div class="bg-orange-200 hidden sm:flex md:hidden justify-center">
+            <div class="bg-orange-400 p-2 text-white">sm
+              <span class="font-bold">tablet-small</span></div>
+          </div>
+          <div class="bg-red-200 hidden md:flex lg:hidden justify-center">
+            <div class="bg-red-400 p-2 text-white">md
+              <span class="font-bold">tablet-portrait</span></div>
+          </div>
+          <div class="bg-green-200 hidden lg:flex xl:hidden justify-center">
+            <div class="bg-green-400 p-2 text-white">lg
+              <span class="font-bold">desktop</span></div>
+          </div>
+          <div class="bg-teal-200 hidden xl:flex justify-center">
+            <div class="bg-teal-400 p-2 text-white">xl
+              <span class="font-bold">wide</span></div>
+          </div>
+        </div>
+      </div>
+
+    {% endblock %}
+
+  {% endembed %}
+
+  {% embed "layout/section.html.twig" %}
+
+    {% block section %}
+
+      <h2 class="text-gray-400 text-xl my-2">text size</h2>
+      <div class="row flex-wrap">
+        <div class="col w-2/12 text-right self-end">
+          0.75rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-xs leading-none">text-xs</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          0.875rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-sm leading-none">text-sm</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          1rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-base leading-none">text-base</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          1.125rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-lg leading-none">text-lg</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          1.25rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-xl leading-none">text-xl</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          1.5rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-2xl leading-none">text-2xl</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          1.875rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-3xl leading-none">text-3xl</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          2.25rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-4xl leading-none">text-4xl</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          3rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-5xl leading-none">text-5xl</span>
+        </div>
+        <div class="col w-2/12 text-right self-end">
+          4rem
+        </div>
+        <div class="col w-10/12">
+          <span class="text-6xl leading-none">text-6xl</span>
+        </div>
+      </div>
+
+    {% endblock %}
+
+  {% endembed %}
+
+  <section class="section">
+    <h2 class="text-gray-400 text-xl my-2 container">grid size</h2>
+    <div class="bg-teal-400">
+      <div class="section container bg-blue-400" style="padding-left: 0; padding-right: 0">
+        <div class="container bg-purple-400">
+          <div class="row" style="margin: auto">
+            <div class="col w-6/12 bg-red-400" style="padding-left: 0">
+              <div class="bg-red-200 h-20"></div>
+            </div>
+            <div class="col w-6/12 bg-red-400" style="padding-right: 0">
+              <div class="bg-red-200 h-20"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container flex my-2">
+      <div class="text-red-400">32px
+        <span class="font-bold">gutter width</span></div>
+    </div>
+    <div class="container flex my-2">
+      <div class="text-purple-400">32px
+        <span class="font-bold">offset</span></div>
+    </div>
+    <div class="container flex my-2">
+      <div class="text-blue-400">48px
+        <span class="font-bold">section offset</span></div>
+    </div>
+    <div class="container flex my-2">
+      <div class="text-teal-400">1600px
+        <span class="font-bold">max-width</span></div>
+    </div>
+  </section>
+
+  {% embed "layout/section.html.twig" with {
+    section_class : [""],
+    container_class: [""]
+  } %}
+
+    {% block section %}{% endblock %}
+
+  {% endembed %}
+
+{% endblock %}

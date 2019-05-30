@@ -1,7 +1,7 @@
 {% if section_tag == "header" %}
 
   <header class="section {{ section_class|join(' ') }}">
-    <div class="container">
+    <div class="container {{ container_class|join(' ') }}">
 
       {% block header %}{% endblock %}
 
@@ -11,7 +11,7 @@
 {% elseif section_tag == "footer" %}
 
   <footer class="section {{ section_class|join(' ') }}">
-    <div class="container">
+    <div class="container {{ container_class|join(' ') }}">
 
       {% block footer %}{% endblock %}
 
@@ -21,7 +21,7 @@
 {% else %}
 
   <section class="section {{ section_class|join(' ') }}">
-    <div class="container">
+    <div class="container {{ container_class|join(' ') }}">
 
       {% block section %}{% endblock %}
 

@@ -9,14 +9,14 @@ const config = require(path.resolve(__dirname, 'config/theme.json'))
 module.exports = {
   plugins: [
     new VueLoaderPlugin(),
-    // new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),
-    // new CopyWebpackPlugin([{
-    //   from: 'theme/public',
-    //   to: ''
-    // }, {
-    //   from: 'theme/vendor',
-    //   to: 'vendor'
-    // }]),
+    new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),
+    new CopyWebpackPlugin([{
+      from: 'theme/public',
+      to: ''
+    }, {
+      from: 'theme/vendor',
+      to: 'vendor'
+    }]),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional

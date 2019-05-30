@@ -79,12 +79,20 @@ class TimberTailwind extends Timber\Site
             'portrait-50vw' => array(
                 'resize' => array(800, 1200),
                 'srcset' => array(0.5, 2, 3),
-                'sizes' => '(min-width: 640px) 50vw, 100vw'
+                'sizes' => '(min-width: 640px) 50vw, 100vw',
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
             ),
             'landscape-100vw' => array(
                 'resize' => array(1600, 1066),
                 'srcset' => array(0.5, 2, 3),
-                'sizes' => '100vw'
+                'sizes' => '100vw',
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
             ),
         );
     }
