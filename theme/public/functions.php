@@ -40,6 +40,7 @@ class TimberTailwind extends Timber\Site
         add_action('init', array($this, 'register_post_types'));
         add_action('init', array($this, 'register_advanced_custom_fields'));
         add_action('init', array($this, 'register_taxonomies'));
+        add_action('admin_enqueue_scripts', array( $this, 'load_admin_scripts' ));
         add_action('wp_enqueue_scripts', array( $this, 'load_scripts' ));
         parent::__construct();
     }
@@ -184,6 +185,11 @@ class TimberTailwind extends Timber\Site
         $twig->addFilter(new Twig_SimpleFilter('my_filter', array($this, 'my_filter')));
 
         return $twig;
+    }
+
+    public function load_admin_scripts()
+    {
+        wp_enqueue_style( 'admin', get_template_directory_uri() .'/css/admin.css', array(), false, 'all' );
     }
 
     public function load_scripts()

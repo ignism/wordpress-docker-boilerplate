@@ -1,27 +1,35 @@
-body,
-html {
+html ,
+body {
   @apply text-black bg-white font-sans;
 }
 
 header.header-main {
-  @apply fixed w-full z-50;
+  @apply fixed w-full z-40;
 }
 
 main.main {
+  @apply bg-white;
   flex: 1 0 auto;
   padding-top: 120px;
   min-height: 100vh;
 }
 
 footer.footer-main {
+  @apply absolute w-full z-40;
   flex-shrink: 0;
+}
+
+.footer-overflow-background {
+  @apply z-0 fixed w-full bottom-0;
+  height: 50vh;
 }
 
 a,
 a:active,
 a:focus,
 a:visited {
-  @apply text-black no-underline;
+  @apply no-underline;
+  color: inherit;
 }
 
 a:hover {

@@ -1,0 +1,13 @@
+/* Admin styles */
+
+.acf-input-wrap {
+  height: auto !important;
+}
+
+.acf-url input[type="url"] {
+  padding-left: 25px !important;
+}
+
+.acf-icon.small, .acf-icon.-small {
+  padding-top: 8px !important;
+}

@@ -2,8 +2,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 /*  */
+@import "./variables.pcss";
+/*  */
 @import "./components.pcss";
 @import "./elements.pcss";
 @import "./grid.pcss";
 @import "./images.pcss";
 @import "./barba.pcss";
+@import "./header.pcss";

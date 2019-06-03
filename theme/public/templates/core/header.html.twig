@@ -1,6 +1,6 @@
 {% embed "layout/section.html.twig" with {
   section_tag : "header",
-  section_class: ['header-main', 'bg-gray-lighter', 'flex', 'items-end']
+  section_class: ['header-main', 'bg-gray-lighter', 'flex', 'items-center']
 } %}
 
   {% block header %}
@@ -11,11 +11,17 @@
         <span class="font-bold text-xl uppercase tracking-widest">{{ site.title }}</span>
         </a>
       </div>
-      <div class="menu flex">
+      
+      <div class="nav-menu text-3xl lg:text-base z-40">
         {% include "components/menu.html.twig" with {
           "menu" : menu.get_items
         } %}
-        <a href="#footer" class="footer-toggle ml-4">footer</a>
+        <a href="#footer" class="footer-toggle nav-menu-item">footer</a>
+      </div>
+
+      <div class="nav-burger relative z-50">
+        <span></span>
+        <span></span>
       </div>
 
     </nav>

@@ -1,10 +1,10 @@
 {% if menu %}
 
-  <ul class="list-reset flex">
+  <ul class="list-reset flex flex-col lg:flex-row">
 
     {% for item in menu %}
 
-      <li class="{{ item.classes | join(' ') }} ml-4">
+      <li class="nav-menu-item">
         <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
 
         {% include "components/menu.html.twig" with {

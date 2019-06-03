@@ -1,5 +1,5 @@
 import { EventBus } from './event-bus'
-import { easing, tween, styler } from 'popmotion'
+import { easing, tween } from 'popmotion'
 import { documentOffset } from './utilities'
 
 EventBus.$once('init', (event) => {
@@ -46,17 +46,24 @@ class Footer {
 
   slideIn() {
     let scrollOffsetBottom = window.scrollY + window.innerHeight
-    let offset = Math.max(0, scrollOffsetBottom - documentOffset(this.wrapper).top)
+    let offset = Math.max(
+      Math.min(120, scrollOffsetBottom - documentOffset(this.wrapper).top),
+      0
+    )
+    
+    if (offset === this.element.clientHeight) return
 
     this.element.style.position = 'fixed'
-    this.element.style.top = 'calc(100vh - ' + offset + 'px)'
+    this.element.style.bottom = -1 * offset + 'px'
 
     this.animation = tween({
-      from: offset,
-      to: this.element.clientHeight,
-      duration: 400,
-      ease: easing.circOut
-    }).start((v) => (this.element.style.top = 'calc(100vh - ' + v + 'px)'))
+      from: this.element.clientHeight - offset,
+      to: 0,
+      duration: 600,
+      ease: easing.easeOut
+    }).start((v) => {
+      this.element.style.bottom = (-1 * v) + 'px'
+    })
 
     this.element.classList.add('active')
   }
@@ -65,17 +72,19 @@ class Footer {
     this.pin()
 
     let scrollOffsetBottom = window.scrollY + window.innerHeight
-    let offset = Math.max(0, scrollOffsetBottom - documentOffset(this.wrapper).top)
+    let offset = Math.max(
+      Math.min(120, scrollOffsetBottom - documentOffset(this.wrapper).top),
+      0
+    )
 
     this.animation = tween({
-      from: this.element.clientHeight,
-      to: this.element.clientHeight - (this.element.clientHeight - offset),
-      duration: 400,
-      ease: easing.circIn
+      from: 0,
+      to: this.element.clientHeight - offset,
+      duration: 600,
+      ease: easing.easeOut
     }).start({
       update: (v) => {
-        this.element.style.top =
-          'calc(100vh - ' + v + 'px)'
+        this.element.style.bottom = (-1 * v) + 'px'
       },
 
       complete: () => this.unpin()
@@ -85,11 +94,13 @@ class Footer {
   pin() {
     this.element.classList.add('active')
     this.element.style.position = 'fixed'
-    this.element.style.top = 'calc(100vh - ' + this.element.clientHeight + 'px)'
+    this.element.style.bottom = 0
   }
 
   unpin() {
-    this.animation.stop()
+    if (this.animation) {
+      this.animation.stop()
+    }
     this.element.classList.remove('active')
     this.element.style = ''
   }

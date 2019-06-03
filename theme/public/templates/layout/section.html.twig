@@ -1,6 +1,6 @@
 {% if section_tag == "header" %}
 
-  <header class="section {{ section_class|join(' ') }}">
+  <header class="{{ section_class|join(' ') }}">
     <div class="container {{ container_class|join(' ') }}">
 
       {% block header %}{% endblock %}
