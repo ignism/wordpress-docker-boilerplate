@@ -27,9 +27,9 @@ HTML:
     - /html
 JSON:
   beautifiers:
-    - Prettier
-    - Pretty Diff
     - JS-Beautify
+    - Pretty Diff
+    - Prettier
   indent_size: 2
   indent_style: space
   quotes: double
@@ -43,9 +43,9 @@ JSON:
   unindent_chained_methods: false
 JavaScript:
   beautifiers:
-    - Prettier
-    - Pretty Diff
     - JS-Beautify
+    - Pretty Diff
+    - Prettier
     - ESLint
   indent_size: 2
   indent_style: space
