@@ -9,7 +9,7 @@
 
 $context = Timber::context();
 $timber_post = new Timber\Post();
-$context['page'] = $timber_post;
+$context['post'] = $timber_post;
 
 $templates = array( 'pages/' . $timber_post->post_name . '.html.twig', 'pages/page.html.twig' );
 

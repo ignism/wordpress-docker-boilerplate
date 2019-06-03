@@ -1,6 +1,7 @@
 import './css/style.css'
 import './js/main.js'
 import './js/images.js'
+import './js/barba.js'
 
 // EXAMPLE: integrate Vue components
 //

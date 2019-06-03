@@ -7,6 +7,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require(path.resolve(__dirname, 'config/theme.json'))
 
 module.exports = {
+  node: {
+    fs: "empty"
+  },
   plugins: [
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),

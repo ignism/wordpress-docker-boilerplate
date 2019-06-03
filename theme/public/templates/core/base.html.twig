@@ -29,15 +29,17 @@
       {% include "core/header.html.twig" %}
     {% endblock %}
 
-    <main class="main header-space">
-      {% block main %}{% endblock %}
+    <main class="main" data-barba="wrapper">
+      <div data-barba="container" data-barba-namespace="{{ post.post_name }}">
+        {% block main %}{% endblock %}
+
+        {% block scripts %}{% endblock %}
+      </div>
     </main>
 
     {% block footer %}
       {% include "core/footer.html.twig" %}
     {% endblock %}
-
-    {% block scripts %}{% endblock %}
 
     {{ function('wp_footer') }}
   </body>
