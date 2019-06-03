@@ -10,6 +10,7 @@ module.exports = {
   node: {
     fs: "empty"
   },
+  
   plugins: [
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),
