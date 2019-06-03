@@ -5,10 +5,15 @@
 
   {% block footer %}
 
-    <p>
-      &copy;
-      {{ "now"|date("Y") }}
-    </p>
+    {% if footer_widget %}
+      
+      <p>{{ footer_widget.footer_text }}</p>
+
+    {% else %}
+      
+      <p>&copy; {{ "now"|date("Y") }}</p>
+
+    {% endif %}
 
   {% endblock %}
 
