@@ -3,6 +3,7 @@ import './js/main.js'
 import './js/images.js'
 import './js/barba.js'
 import './js/footer.js'
+import './js/scrollmagic-controller.js'
 
 // EXAMPLE: integrate Vue components
 //
