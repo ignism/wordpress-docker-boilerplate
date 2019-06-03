@@ -11,10 +11,11 @@
         <span class="font-bold text-xl uppercase tracking-widest">{{ site.title }}</span>
         </a>
       </div>
-      <div class="menu">
+      <div class="menu flex">
         {% include "components/menu.html.twig" with {
           "menu" : menu.get_items
         } %}
+        <a href="#footer" class="footer-toggle ml-4">footer</a>
       </div>
 
     </nav>

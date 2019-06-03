@@ -1,20 +1,24 @@
-{% embed "layout/section.html.twig" with {
-  section_tag : "footer",
-  section_class: ['header-main', 'bg-gray-900', 'text-gray-600']
-} %}
+<div class="footer-wrapper relative">
 
-  {% block footer %}
+  {% embed "layout/section.html.twig" with {
+    section_tag : "footer",
+    section_class: ['footer-main', 'absolute', 'w-full', 'bg-gray-900', 'text-gray-600']
+  } %}
 
-    {% if footer_widget %}
-      
-      <p>{{ footer_widget.footer_text }}</p>
+    {% block footer %}
 
-    {% else %}
-      
-      <p>&copy; {{ "now"|date("Y") }}</p>
+      {% if footer_widget %}
+        
+        <p>{{ footer_widget.footer_text }}</p>
 
-    {% endif %}
+      {% else %}
+        
+        <p>&copy; {{ "now"|date("Y") }}</p>
 
-  {% endblock %}
+      {% endif %}
 
-{% endembed %}
+    {% endblock %}
+
+  {% endembed %}
+
+</div>
