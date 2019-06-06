@@ -1,13 +1,32 @@
 $burger-width: 1.5em;
 $burger-height: 1em;
+
+.header-offset {
+  padding-top: 120px;
+}
+
 .header-main {
-  padding-top: $site-offset;
-  height: $header-height;
+  opacity: 0;
+  padding-bottom: calc($site-offset / 2);
+  transition: $short ease;
+  
+  &.header-unpin {
+    opacity: 1;
+    @apply bg-transparent;
+    padding-top: calc($site-offset * 2);
+  }
+
+  &.header-pin {
+    opacity: 1;
+    @apply bg-white;
+    padding-top: $site-offset;
+  }
+
   .nav-main {
     @apply relative;
   }
   .nav-menu {
-    @apply fixed w-full h-screen flex flex-col bg-gray-900 text-white;
+    @apply fixed w-full h-screen flex flex-col bg-gray-600 text-white;
     top: 0;
     left: 100vw;
     padding: calc($header-height + $site-offset) $site-offset;
@@ -23,20 +42,23 @@ $burger-height: 1em;
     span {
       @apply bg-black w-full self-end;
       height: 2px;
-      transition: $medium $easeCircOut;
+      transition: $medium easeOutCirc;
     }
-    &:hover {
+
+    /* @mixin hover {
       span:first-child {
         margin-top: 4px;
       }
       span:last-child {
         margin-bottom: 4px;
       }
-    }
+    } */
+    @mixin hover-child span:first-child, margin-top, 4px;
+    @mixin hover-child span:last-child, margin-bottom, 4px;
   }
   &.animating {
     .nav-menu {
-      transition: left $medium $easeCircInOut;
+      transition: left $medium easeInOutCirc;
     }
   }
   &.active {

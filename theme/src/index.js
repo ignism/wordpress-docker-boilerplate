@@ -4,7 +4,7 @@ import './js/images.js'
 import './js/barba.js'
 import './js/footer.js'
 import './js/header.js'
-import './js/scrollmagic-controller.js'
+import './js/scroll-controller.js'
 
 // EXAMPLE: integrate Vue components
 //

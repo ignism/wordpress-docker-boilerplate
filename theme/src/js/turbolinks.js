@@ -1,6 +1,6 @@
 import Turbolinks from 'turbolinks'
-import {EventBus} from './event-bus'
+import {eventBus} from './event-bus'
 
-EventBus.$once('init', () => {
+eventBus.$once('init', () => {
     Turbolinks.start()
 })

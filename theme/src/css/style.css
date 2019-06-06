@@ -3,6 +3,7 @@
 @import "tailwindcss/utilities";
 /*  */
 @import "./variables.pcss";
+@import "./mixins.pcss";
 /*  */
 @import "./components.pcss";
 @import "./elements.pcss";
@@ -10,3 +11,4 @@
 @import "./images.pcss";
 @import "./barba.pcss";
 @import "./header.pcss";
+/*  */

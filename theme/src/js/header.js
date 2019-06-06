@@ -1,6 +1,8 @@
-import { EventBus } from './event-bus'
+import { eventBus } from './event-bus'
+import { scrollController } from './scroll-controller'
+import { config } from './config'
 
-EventBus.$once('init', (event) => {
+eventBus.$once('init', (event) => {
   let header = document.querySelector('.header-main')
   let menu = document.querySelector('.nav-main .nav-menu')
   let toggle = document.querySelector('.nav-main .nav-burger')
@@ -14,7 +16,7 @@ EventBus.$once('init', (event) => {
     toggle.addEventListener('click', (event) => {
       event.preventDefault()
 
-      EventBus.$emit('toggle-header')
+      eventBus.$emit('toggle-header')
     })
   }
 })
@@ -27,7 +29,19 @@ class Header {
   }
 
   init() {
-    EventBus.$on('toggle-header', (event) => {
+    if (window.scrollY < config.offsetFromTop) {
+      this.unpin()
+    }
+
+    eventBus.$on('scrolled-from-top', (event) => {
+      this.pin()
+    })
+
+    eventBus.$on('scrolled-to-top', (event) => {
+      this.unpin()
+    })
+
+    eventBus.$on('toggle-header', (event) => {
       if (this.element.classList.contains('active')) {
         this.element.classList.add('animating')
         setTimeout(() => {
@@ -43,10 +57,20 @@ class Header {
       }
     })
 
-    EventBus.$on('window-resized', event => {
+    eventBus.$on('window-resized', event => {
       if (window.innerWidth >= 1024) {
         this.element.classList.remove('active')
       }
     })
+  }
+
+  pin() {
+    this.element.classList.add('header-pin')
+    this.element.classList.remove('header-unpin')
+  }
+
+  unpin() {
+    this.element.classList.remove('header-pin')
+    this.element.classList.add('header-unpin')
   }
 }

@@ -1,6 +1,6 @@
 import ScrollMagic from 'scrollmagic'
 
-export const Controller = new ScrollMagic.Controller({
+export const scrollController = new ScrollMagic.Controller({
   globalSceneOptions: {
     duration: 0
   }

@@ -3,19 +3,17 @@ body {
   @apply text-black bg-white font-sans;
 }
 
-header.header-main {
-  @apply fixed w-full z-40;
+.header-main {
+  @apply fixed w-full flex items-center;
 }
 
-main.main {
-  @apply bg-white;
+.main-wrapper {
+  @apply bg-white min-h-screen relative;
   flex: 1 0 auto;
-  padding-top: 120px;
-  min-height: 100vh;
 }
 
-footer.footer-main {
-  @apply absolute w-full z-40;
+.footer-main {
+  @apply absolute w-full;
   flex-shrink: 0;
 }
 

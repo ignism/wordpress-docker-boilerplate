@@ -1,4 +1,4 @@
-import { EventBus } from './event-bus'
+import { eventBus } from './event-bus'
 import barba from '@barba/core'
 import barbaCss from '@barba/css'
 import axios from 'axios'
@@ -6,13 +6,21 @@ import axios from 'axios'
 // tell Barba to use the css module
 barba.use(barbaCss)
 
-EventBus.$once('init', (event) => {
+eventBus.$once('init', (event) => {
   barba.init({
     transitions: [
       {
         name: 'barba-fade',
 
+        beforeLeave() {
+          document.body.classList.remove('barba-enter')
+          document.body.classList.add('barba-leave')
+        },
+
         beforeEnter() {
+          document.body.classList.add('barba-enter')
+          document.body.classList.remove('barba-leave')
+
           let main = document.querySelector('.main')
           let scripts = Array.from(main.querySelectorAll('script'))
           scripts.forEach((script) => {
@@ -26,7 +34,12 @@ EventBus.$once('init', (event) => {
               })
           })
 
-          EventBus.$emit('barba-page-change')
+          eventBus.$emit('barba-page-change')
+        },
+
+        afterEnter() {
+          document.body.classList.remove('barba-enter')
+          document.body.classList.remove('barba-leave')
         }
       }
     ]

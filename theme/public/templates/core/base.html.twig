@@ -25,17 +25,20 @@
 
   <body class="{{ body_class|join(' ') }}">
 
+    <div class="barba-wipe z-40"></div>
+
     {% block header %}
       {% include "core/header.html.twig" %}
     {% endblock %}
 
-    <main class="main z-10 relative" data-barba="wrapper">
-      <div data-barba="container" data-barba-namespace="{{ post.post_name }}">
+    <div class="main-wrapper z-10" data-barba="wrapper">
+      <main class="main {{ main_class|join(' ') }}" data-barba="container" data-barba-namespace="{{ post.post_name }}">
         {% block main %}{% endblock %}
 
         {% block scripts %}{% endblock %}
-      </div>
-    </main>
+      </main>
+    </div>
+
 
     {% block footer %}
       {% include "core/footer.html.twig" %}

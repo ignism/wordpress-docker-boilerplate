@@ -4,6 +4,10 @@
 
 {% block main %}
 
+  {% include "components/image.html.twig" with {
+          figure_class: ['w-full', 'portrait'],
+        } %}
+
   {% embed "layout/section.html.twig" %}
 
       {% block section %}

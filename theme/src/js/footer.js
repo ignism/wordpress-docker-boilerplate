@@ -1,8 +1,10 @@
-import { EventBus } from './event-bus'
+import { eventBus } from './event-bus'
 import { easing, tween } from 'popmotion'
 import { documentOffset } from './utilities'
 
-EventBus.$once('init', (event) => {
+const animationDuration = 600
+
+eventBus.$once('init', (event) => {
   let footer = document.querySelector('.footer-main')
   let wrapper = document.querySelector('.footer-wrapper')
   let toggle = document.querySelector('.footer-toggle')
@@ -16,7 +18,7 @@ EventBus.$once('init', (event) => {
     toggle.addEventListener('click', (event) => {
       event.preventDefault()
 
-      EventBus.$emit('toggle-footer')
+      eventBus.$emit('toggle-footer')
     })
   }
 })
@@ -31,7 +33,7 @@ class Footer {
   init() {
     this.wrapper.style.minHeight = this.element.clientHeight + 'px'
 
-    EventBus.$on('toggle-footer', (event) => {
+    eventBus.$on('toggle-footer', (event) => {
       if (this.element.classList.contains('active')) {
         this.slideOut()
       } else {
@@ -39,7 +41,7 @@ class Footer {
       }
     })
 
-    EventBus.$on('scrolled-to-bottom', (event) => {
+    eventBus.$on('scrolled-to-bottom', (event) => {
       this.unpin()
     })
   }
@@ -59,8 +61,8 @@ class Footer {
     this.animation = tween({
       from: this.element.clientHeight - offset,
       to: 0,
-      duration: 600,
-      ease: easing.easeOut
+      duration: animationDuration,
+      ease: easing.circOut
     }).start((v) => {
       this.element.style.bottom = (-1 * v) + 'px'
     })
@@ -80,8 +82,8 @@ class Footer {
     this.animation = tween({
       from: 0,
       to: this.element.clientHeight - offset,
-      duration: 600,
-      ease: easing.easeOut
+      duration: animationDuration,
+      ease: easing.circOut
     }).start({
       update: (v) => {
         this.element.style.bottom = (-1 * v) + 'px'
