@@ -1,6 +1,3 @@
-$burger-width: 1.5em;
-$burger-height: 1em;
-
 .header-offset {
   padding-top: 120px;
 }
@@ -21,70 +18,13 @@ $burger-height: 1em;
     @apply bg-white;
     padding-top: $site-offset;
   }
-
-  .nav-main {
-    @apply relative;
-  }
-  .nav-menu {
-    @apply fixed w-full h-screen flex flex-col bg-gray-600 text-white;
-    top: 0;
-    left: 100vw;
-    padding: calc($header-height + $site-offset) $site-offset;
-    .nav-menu-item {
-      @apply ml-0;
-    }
-  }
-  .nav-burger {
-    @apply flex flex-col justify-between;
-    font-size: inherit;
-    width: $burger-width;
-    height: $burger-height;
-    span {
-      @apply bg-black w-full self-end;
-      height: 2px;
-      transition: $medium easeOutCirc;
-    }
-
-    /* @mixin hover {
-      span:first-child {
-        margin-top: 4px;
-      }
-      span:last-child {
-        margin-bottom: 4px;
-      }
-    } */
-    @mixin hover-child span:first-child, margin-top, 4px;
-    @mixin hover-child span:last-child, margin-bottom, 4px;
-  }
-  &.animating {
-    .nav-menu {
-      transition: left $medium easeInOutCirc;
-    }
-  }
-  &.active {
-    .nav-menu {
-      left: 10vw;
-    }
-    .nav-burger {
-      span {
-        @apply bg-white;
-        margin: 0 !important;
-        &:first-child {
-          transform: translateY(calc($burger-height / 2 - 1px));
-        }
-        &:last-child {
-          transform: translateY(calc($burger-height / -2 + 1px));
-        }
-      }
-    }
-  }
 }
 
 @screen sm {
   .header-main {
     &.active {
       .nav-menu {
-        left: 50vw;
+        left: 20vw;
       }
     }
   }

@@ -43,7 +43,7 @@ function create_widget_cpt() {
 		'public' => false,
 		'show_ui' => true,
 		'show_in_menu' => true,
-		'menu_position' => 20,
+		'menu_position' => 5,
 		'show_in_admin_bar' => false,
 		'show_in_nav_menus' => false,
 		'can_export' => true,

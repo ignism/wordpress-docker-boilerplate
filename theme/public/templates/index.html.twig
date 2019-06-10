@@ -4,21 +4,19 @@
 
 {% block main %}
 
-  {% include "components/image.html.twig" with {
-          figure_class: ['w-full', 'portrait'],
-        } %}
+  {% embed "layout/section.html.twig" with { 
+    section_class: ['bg-gray-400', 'h-screen']
+  } %}
 
-  {% embed "layout/section.html.twig" %}
+    {% block section %}
 
-      {% block section %}
+      <div class="hero header-offset">
+        <h1>{{ site.title }}</h1>
+      </div>
 
-        {% include "components/image.html.twig" with {
-          figure_class: ['w-1/3', 'landscape'],
-        } %}
-        
-      {% endblock %}
+    {% endblock %}
 
-    {% endembed %}
+  {% endembed %}
 
   {% for post in posts %}
 
@@ -31,7 +29,7 @@
         </a>
 
       {% endblock %}
-      
+
     {% endembed %}
 
   {% endfor %}

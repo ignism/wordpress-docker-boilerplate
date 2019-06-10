@@ -1,4 +1,4 @@
-import { eventBus } from './event-bus'
+import { eventBus } from '../core/event-bus'
 import barba from '@barba/core'
 import barbaCss from '@barba/css'
 import axios from 'axios'

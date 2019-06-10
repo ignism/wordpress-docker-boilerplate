@@ -1,10 +1,9 @@
-import { eventBus } from './event-bus'
-import { scrollController } from './scroll-controller'
-import { config } from './config'
+import { eventBus } from '../core/event-bus'
+import { config } from '../core/config'
 
 eventBus.$once('init', (event) => {
   let header = document.querySelector('.header-main')
-  let menu = document.querySelector('.nav-main .nav-menu')
+  let menu = document.querySelector('.nav-main')
   let toggle = document.querySelector('.nav-main .nav-burger')
 
   if (header && menu) {
@@ -16,7 +15,7 @@ eventBus.$once('init', (event) => {
     toggle.addEventListener('click', (event) => {
       event.preventDefault()
 
-      eventBus.$emit('toggle-header')
+      eventBus.$emit('toggle-menu')
     })
   }
 })
@@ -41,19 +40,22 @@ class Header {
       this.unpin()
     })
 
-    eventBus.$on('toggle-header', (event) => {
-      if (this.element.classList.contains('active')) {
-        this.element.classList.add('animating')
+    eventBus.$on('toggle-menu', (event) => {
+      if (this.menu.classList.contains('animating')) {
+        return
+      }
+      if (this.menu.classList.contains('active')) {
+        this.menu.classList.add('animating')
         setTimeout(() => {
-          this.element.classList.remove('animating')
+          this.menu.classList.remove('animating')
         }, this.animationDuration)
-        this.element.classList.remove('active')
+        this.menu.classList.remove('active')
       } else {
-        this.element.classList.add('animating')
+        this.menu.classList.add('animating')
         setTimeout(() => {
-          this.element.classList.remove('animating')
+          this.menu.classList.remove('animating')
         }, this.animationDuration)
-        this.element.classList.add('active')
+        this.menu.classList.add('active')
       }
     })
 

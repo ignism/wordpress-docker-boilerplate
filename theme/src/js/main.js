@@ -1,8 +1,8 @@
-import { eventBus } from './event-bus'
-import { scrollController } from './scroll-controller'
 import ScrollMagic from 'scrollmagic'
 import debounce from 'lodash/debounce'
-import { config } from './config'
+import { eventBus } from './core/event-bus'
+import { scrollController } from './core/scroll-controller'
+import { config } from './core/config'
 
 let sceneScrolledTop
 let sceneScrolledBottom
@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   eventBus.$on('barba-page-change', event => {
     if (sceneScrolledBottom) {
-      Controller.removeScene(sceneScrolledBottom)
+      scrollController.removeScene(sceneScrolledBottom)
       initSceneScrolledBottom()
     }
   })

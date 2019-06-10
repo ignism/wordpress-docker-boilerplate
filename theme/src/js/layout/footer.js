@@ -1,8 +1,8 @@
-import { eventBus } from './event-bus'
+import { eventBus } from '../core/event-bus'
 import { easing, tween } from 'popmotion'
-import { documentOffset } from './utilities'
+import { documentOffset } from '../utilities'
 
-const animationDuration = 600
+const animationDuration = 300
 
 eventBus.$once('init', (event) => {
   let footer = document.querySelector('.footer-main')
@@ -34,6 +34,14 @@ class Footer {
     this.wrapper.style.minHeight = this.element.clientHeight + 'px'
 
     eventBus.$on('toggle-footer', (event) => {
+      if (this.element.classList.contains('animating')) {
+        return
+      }
+
+      if (this.animation) {
+        this.animation.stop()
+      }
+      
       if (this.element.classList.contains('active')) {
         this.slideOut()
       } else {
@@ -47,6 +55,8 @@ class Footer {
   }
 
   slideIn() {
+    this.element.classList.add('animating')
+
     let scrollOffsetBottom = window.scrollY + window.innerHeight
     let offset = Math.max(
       Math.min(120, scrollOffsetBottom - documentOffset(this.wrapper).top),
@@ -55,22 +65,27 @@ class Footer {
     
     if (offset === this.element.clientHeight) return
 
+    this.element.style.bottom = -1 * (this.element.clientHeight - offset) + 'px'
     this.element.style.position = 'fixed'
-    this.element.style.bottom = -1 * offset + 'px'
 
     this.animation = tween({
       from: this.element.clientHeight - offset,
       to: 0,
       duration: animationDuration,
       ease: easing.circOut
-    }).start((v) => {
-      this.element.style.bottom = (-1 * v) + 'px'
+    }).start({
+      update: (v) => {
+        this.element.style.bottom = (-1 * v) + 'px'
+      }, 
+      complete: () => {
+        this.element.classList.remove('animating')
+        this.pin()
+      }
     })
-
-    this.element.classList.add('active')
   }
 
   slideOut() {
+    this.element.classList.add('animating')
     this.pin()
 
     let scrollOffsetBottom = window.scrollY + window.innerHeight
@@ -89,7 +104,10 @@ class Footer {
         this.element.style.bottom = (-1 * v) + 'px'
       },
 
-      complete: () => this.unpin()
+      complete: () => {
+        this.unpin()
+        this.element.classList.remove('animating')
+      }
     })
   }
 

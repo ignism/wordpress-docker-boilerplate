@@ -1,10 +1,9 @@
 import './css/style.css'
 import './js/main.js'
-import './js/images.js'
-import './js/barba.js'
-import './js/footer.js'
-import './js/header.js'
-import './js/scroll-controller.js'
+import './js/components/images'
+import './js/layout/barba'
+import './js/layout/footer'
+import './js/layout/header'
 
 // EXAMPLE: integrate Vue components
 //

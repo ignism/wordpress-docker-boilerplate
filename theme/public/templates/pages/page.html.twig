@@ -11,17 +11,7 @@
     {% block section %}
 
       <div class="row">
-        <div class="col w-full md:w-6/12">
-        {% if post.thumbnail %}
-        
-          {% include "components/image.html.twig" with {
-            figure_class : ["portrait"],
-            image: post.thumbnail,
-            size: "portrait-50vw"
-          } %}
-        {% endif %}
-        </div>
-        <div class="col w-full md:w-6/12">
+        <div class="col w-full md:w-10/12 lg:w-8/12 xl:w-6/12">
           <h2>{{ post.title }}</h2>
           <p>{{ post.content }}</p>
         </div>
