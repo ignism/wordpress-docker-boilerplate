@@ -72,15 +72,14 @@ Twig:
   space_after_anon_function: true
 TypeScript:
   beautifiers:
-    - Prettier
     - Pretty Diff
+    - Prettier
   indent_size: 2
   indent_style: space
   quotes: single
   max_preserve_newlines: 2
   multiline_ternary: never
   space_after_anon_function: true
-  end_with_semicolon: false
   arrow_parens: always
   object_curly_spacing: true
 Vue:

@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require(path.resolve(__dirname, 'config/theme.json'))
 
@@ -13,7 +12,6 @@ module.exports = {
   
   plugins: [
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),
     new CopyWebpackPlugin([{
       from: 'theme/public',
       to: ''
@@ -31,6 +29,15 @@ module.exports = {
 
   module: {
     rules: [{
+      test: /\.ts$/,
+
+      include: [path.resolve(__dirname, 'theme', 'src')],
+
+      use: {
+        loader: 'babel-loader',
+        loader: 'ts-loader',
+      }
+    }, {
       test: /\.js$/,
 
       include: [path.resolve(__dirname, 'theme', 'src')],
