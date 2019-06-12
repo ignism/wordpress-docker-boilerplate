@@ -79,7 +79,7 @@ class Footer {
       from: 0,
       to: this.element.clientHeight - offset,
       duration: config.animation.duration.short,
-      ease: easing.circOut
+      ease: easing.circIn
     }).start({
       update: (v) => {
         this.element.style.bottom = -1 * v + 'px';
