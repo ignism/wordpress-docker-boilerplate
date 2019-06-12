@@ -6,42 +6,49 @@ import axios from 'axios'
 // tell Barba to use the css module
 barba.use(barbaCss)
 
-eventBus.$once('init', (event) => {
-  barba.init({
-    transitions: [
-      {
-        name: 'barba-fade',
+class BarbaManager {
+  constructor() {}
 
-        beforeLeave() {
-          document.body.classList.remove('barba-enter')
-          document.body.classList.add('barba-leave')
-        },
+  init() {
+    barba.init({
+      transitions: [
+        {
+          name: 'barba-fade',
 
-        beforeEnter() {
-          document.body.classList.add('barba-enter')
-          document.body.classList.remove('barba-leave')
+          beforeLeave() {
+            document.body.classList.remove('barba-enter')
+            document.body.classList.add('barba-leave')
+          },
 
-          let main = document.querySelector('.main')
-          let scripts = Array.from(main.querySelectorAll('script'))
-          scripts.forEach((script) => {
-            axios
-              .get(script.getAttribute('src'))
-              .then(function(response) {
-                eval(response.data)
-              })
-              .catch(function(error) {
-                console.log(error)
-              })
-          })
+          beforeEnter() {
+            document.body.classList.add('barba-enter')
+            document.body.classList.remove('barba-leave')
 
-          eventBus.$emit('barba-page-change')
-        },
+            let main = document.querySelector('.main')
+            let scripts = Array.from(main.querySelectorAll('script'))
 
-        afterEnter() {
-          document.body.classList.remove('barba-enter')
-          document.body.classList.remove('barba-leave')
+            scripts.forEach((script) => {
+              axios
+                .get(script.getAttribute('src'))
+                .then(function(response) {
+                  eval(response.data)
+                })
+                .catch(function(error) {
+                  console.log(error)
+                })
+            })
+
+            eventBus.$emit('barba-page-change')
+          },
+
+          afterEnter() {
+            document.body.classList.remove('barba-enter')
+            document.body.classList.remove('barba-leave')
+          }
         }
-      }
-    ]
-  })
-})
+      ]
+    })
+  }
+}
+
+export const barbaManager = new BarbaManager()

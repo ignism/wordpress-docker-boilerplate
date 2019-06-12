@@ -27,7 +27,7 @@
     <div class="barba-wipe z-40"></div>
 
     {% block header %}
-      {% include "core/header.html.twig" %}
+      {% include "layout/header.html.twig" %}
     {% endblock %}
 
     <div class="main-wrapper z-10" data-barba="wrapper">
@@ -39,7 +39,7 @@
     </div>
 
     {% block footer %}
-      {% include "core/footer.html.twig" %}
+      {% include "layout/footer.html.twig" %}
     {% endblock %}
 
     {{ function('wp_footer') }}

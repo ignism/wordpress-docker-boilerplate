@@ -1,9 +1,9 @@
 import './css/style.css'
 import './js/main.js'
 import './js/components/images'
-import './js/layout/barba'
-import './js/layout/footer'
-import './js/layout/header'
+import './js/layout'
+
+
 
 // EXAMPLE: integrate Vue components
 //

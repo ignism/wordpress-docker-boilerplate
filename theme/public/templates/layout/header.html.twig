@@ -8,7 +8,7 @@
     <nav id="nav-main" class="nav-main flex justify-between items-center" role="navigation">
       <div class="branding">
         <a href="{{ site.link }}">
-        <span class="font-bold text-xl uppercase tracking-widest">{{ site.title }}</span>
+        <span class="font-bold text-xl uppercase tracking-widest">Branding.</span>
         </a>
       </div>
       
@@ -16,10 +16,10 @@
         {% include "components/menu.html.twig" with {
           "menu" : menu.get_items
         } %}
-        <a href="#footer" class="footer-toggle nav-menu-item">footer</a>
+        <a href="#footer" class="toggle-footer nav-menu-item">footer</a>
       </div>
 
-      <div class="nav-burger relative z-50">
+      <div class="nav-burger toggle-menu relative z-50">
         <span></span>
         <span></span>
       </div>

@@ -7,16 +7,38 @@ import { config } from './core/config'
 let sceneScrolledTop
 let sceneScrolledBottom
 
+function initToggleMenu() {
+  let toggles = Array.from(document.querySelectorAll('.toggle-menu'))
+
+  console.log(toggles)
+  toggles.forEach((toggle) => {
+    toggle.addEventListener('click', (event) => {
+      eventBus.$emit('toggle-menu')
+    })
+  })
+}
+
+function initToggleFooter() {
+  let toggles = Array.from(document.querySelectorAll('.toggle-footer'))
+
+  console.log(toggles)
+  toggles.forEach((toggle) => {
+    toggle.addEventListener('click', (event) => {
+      eventBus.$emit('toggle-footer')
+    })
+  })
+}
+
 function initSceneScrolledTop() {
   sceneScrolledTop = new ScrollMagic.Scene({
     offset: config.offsetFromTop
-  }).addTo(scrollController) 
+  }).addTo(scrollController)
 
-  sceneScrolledTop.on('enter', (event)=>{
+  sceneScrolledTop.on('enter', (event) => {
     eventBus.$emit('scrolled-from-top')
   })
 
-  sceneScrolledTop.on('leave', (event)=>{
+  sceneScrolledTop.on('leave', (event) => {
     eventBus.$emit('scrolled-to-top')
   })
 }
@@ -24,13 +46,13 @@ function initSceneScrolledTop() {
 function initSceneScrolledBottom() {
   sceneScrolledBottom = new ScrollMagic.Scene({
     offset: document.body.clientHeight - window.innerHeight
-  }).addTo(scrollController) 
+  }).addTo(scrollController)
 
-  sceneScrolledBottom.on('enter', (event)=>{
+  sceneScrolledBottom.on('enter', (event) => {
     eventBus.$emit('scrolled-to-bottom')
   })
 
-  sceneScrolledBottom.on('leave', (event)=>{
+  sceneScrolledBottom.on('leave', (event) => {
     eventBus.$emit('scrolled-from-bottom')
   })
 }
@@ -38,10 +60,12 @@ function initSceneScrolledBottom() {
 window.addEventListener('DOMContentLoaded', (event) => {
   eventBus.$emit('init', event)
 
+  initToggleMenu()
+  initToggleFooter()
   initSceneScrolledTop()
   initSceneScrolledBottom()
 
-  eventBus.$on('barba-page-change', event => {
+  eventBus.$on('barba-page-change', (event) => {
     if (sceneScrolledBottom) {
       scrollController.removeScene(sceneScrolledBottom)
       initSceneScrolledBottom()
@@ -49,6 +73,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
   })
 })
 
-window.addEventListener('resize', debounce((event) => {
-  eventBus.$emit('window-resized', event)
-}, 400))
+window.addEventListener(
+  'resize',
+  debounce((event) => {
+    eventBus.$emit('window-resized', event)
+  }, 400)
+)

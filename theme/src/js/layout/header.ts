@@ -6,12 +6,14 @@ class Header {
 
   constructor() {}
 
-  init(element) {
+  public init(element) {
     this.element = element;
 
-    if (window.scrollY < config.offsetFromTop) {
-      this.unpin();
+    if (window.scrollY > config.offsetFromTop) {
+      this.pin();
     }
+
+    this.addEventListeners()
   }
 
   addEventListeners() {

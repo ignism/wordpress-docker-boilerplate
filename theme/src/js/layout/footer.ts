@@ -51,7 +51,7 @@ class Footer {
     this.animation = tween({
       from: this.element.clientHeight - offset,
       to: 0,
-      duration: config.anition.duration.short,
+      duration: config.animation.duration.short,
       ease: easing.circOut
     }).start({
       update: (v) => {
@@ -99,12 +99,16 @@ class Footer {
         return;
       }
 
-      if (this.element.classList.contains('active')) {
+      if (this.element.classList.contains('pinned')) {
         this.slideOut();
       } else {
         this.slideIn();
       }
     });
+
+    eventBus.$on('scrolled-to-bottom', (event) => {
+      this.unpin()
+    })
   }
 }
 

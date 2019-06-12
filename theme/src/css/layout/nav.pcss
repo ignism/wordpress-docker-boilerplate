@@ -1,6 +1,3 @@
-$burger-width: 1.5em;
-$burger-height: 1em;
-
 .nav-main {
   @apply relative;
 
@@ -48,6 +45,30 @@ $burger-height: 1em;
           transform: translateY(calc($burger-height / -2 + 1px));
         }
       }
+    }
+  }
+}
+
+@screen sm {
+  .nav-main {
+    &.active {
+      .nav-menu {
+        left: 20vw;
+      }
+    }
+  }
+}
+
+@screen lg {
+  .nav-main {
+    .nav-menu {
+      @apply relative w-auto h-auto inset-auto flex-row p-0 bg-transparent text-black;
+      .nav-menu-item {
+        @apply ml-4;
+      }
+    }
+    .nav-burger {
+      @apply hidden;
     }
   }
 }
