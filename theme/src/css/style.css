@@ -6,6 +6,7 @@
 @import "./core/mixins.pcss";
 @import "./core/grid.pcss";
 @import "./core/elements.pcss";
+@import "./core/fonts.pcss";
 /*  */
 @import "./components/components.pcss";
 @import "./components/images.pcss";

@@ -101,9 +101,22 @@ class TimberTailwind extends Timber\Site
      */
     public function add_to_context($context)
     {
-        $context['value'] = 'I am a value set in your functions.php file';
-        $context['menu'] = new Timber\Menu();
         $context['site'] = $this;
+        
+        $context['menu'] = new Timber\Menu();
+
+        $widgets = Timber::get_posts(array(
+            'post_type' => 'widget', // Get post type project
+            'posts_per_page' => -1, // Get all posts
+        ));
+
+        $context['widgets'] = $widgets;
+
+        foreach ($widgets as $widget) {
+            if ($widget->post_name == 'footer') {
+                $context['footer_widget'] = $widget;
+            }
+        }
 
         return $context;
     }
