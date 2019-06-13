@@ -1,9 +1,13 @@
 import './css/style.css'
-import './js/main.js'
-import './js/components/images'
+import { siteManager } from './js/main.js'
+import './js/components'
 import './js/layout'
 
+window.addEventListener('DOMContentLoaded', (event) => {
+    siteManager.init()
 
+    console.log(siteManager)
+});
 
 // EXAMPLE: integrate Vue components
 //

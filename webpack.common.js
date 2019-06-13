@@ -81,6 +81,13 @@ module.exports = {
     }]
   },
 
+  resolve: {
+    extensions: ['.js', '.ts'],
+    alias: {
+      '@': path.resolve(__dirname, 'theme', 'src')
+    }
+  },
+
   entry: {
     theme: './theme/src/index.js',
     head: './theme/src/head.js',

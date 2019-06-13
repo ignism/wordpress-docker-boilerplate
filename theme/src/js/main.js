@@ -1,81 +1,89 @@
 import ScrollMagic from 'scrollmagic'
-import debounce from 'lodash/debounce'
-import { eventBus } from './core/event-bus'
-import { scrollController } from './core/scroll-controller'
-import { config } from './core/config'
+import debounce from 'lodash/debounce';
+import { eventBus, scrollController, config } from './core/index.js';
 
-let sceneScrolledTop
-let sceneScrolledBottom
+class SiteManager {
+  constructor() {
+    this.sceneScrolledTop
+    this.sceneScrolledBottom
+  }
 
-function initToggleMenu() {
-  let toggles = Array.from(document.querySelectorAll('.toggle-menu'))
+  init() {
+    eventBus.$emit('init', event);
 
-  console.log(toggles)
-  toggles.forEach((toggle) => {
-    toggle.addEventListener('click', (event) => {
-      eventBus.$emit('toggle-menu')
-    })
-  })
+    this.addToggleMenu();
+    this.addToggleFooter();
+    this.addSceneScrolledTop();
+    this.addSceneScrolledBottom();
+
+    this.addEventListeners();
+  }
+
+  addToggleMenu() {
+    let toggles = document.querySelectorAll('.toggle-menu');
+
+    console.log(toggles);
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('click', (event) => {
+        eventBus.$emit('toggle-menu');
+      });
+    });
+  }
+
+  addToggleFooter() {
+    let toggles = document.querySelectorAll('.toggle-footer');
+
+    console.log(toggles);
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('click', (event) => {
+        eventBus.$emit('toggle-footer');
+      });
+    });
+  }
+
+  addSceneScrolledTop() {
+    this.sceneScrolledTop = new ScrollMagic.Scene({
+      offset: config.offsetFromTop
+    }).addTo(scrollController);
+
+    this.sceneScrolledTop.on('enter', (event) => {
+      eventBus.$emit('scrolled-from-top');
+    });
+
+    this.sceneScrolledTop.on('leave', (event) => {
+      eventBus.$emit('scrolled-to-top');
+    });
+  }
+
+  addSceneScrolledBottom() {
+    this.sceneScrolledBottom = new ScrollMagic.Scene({
+      offset: document.body.clientHeight - window.innerHeight
+    }).addTo(scrollController);
+
+    this.sceneScrolledBottom.on('enter', (event) => {
+      eventBus.$emit('scrolled-to-bottom');
+    });
+
+    this.sceneScrolledBottom.on('leave', (event) => {
+      eventBus.$emit('scrolled-from-bottom');
+    });
+  }
+
+  addEventListeners() {
+    window.addEventListener(
+      'resize',
+      debounce((event) => {
+        eventBus.$emit('window-resized', event);
+      }, 400)
+    );
+
+    eventBus.$on('barba-page-change', (event) => {
+      if (this.sceneScrolledBottom) {
+        scrollController.removeScene(this.sceneScrolledBottom);
+        this.addSceneScrolledBottom();
+      }
+    });
+  }
 }
 
-function initToggleFooter() {
-  let toggles = Array.from(document.querySelectorAll('.toggle-footer'))
-
-  console.log(toggles)
-  toggles.forEach((toggle) => {
-    toggle.addEventListener('click', (event) => {
-      eventBus.$emit('toggle-footer')
-    })
-  })
-}
-
-function initSceneScrolledTop() {
-  sceneScrolledTop = new ScrollMagic.Scene({
-    offset: config.offsetFromTop
-  }).addTo(scrollController)
-
-  sceneScrolledTop.on('enter', (event) => {
-    eventBus.$emit('scrolled-from-top')
-  })
-
-  sceneScrolledTop.on('leave', (event) => {
-    eventBus.$emit('scrolled-to-top')
-  })
-}
-
-function initSceneScrolledBottom() {
-  sceneScrolledBottom = new ScrollMagic.Scene({
-    offset: document.body.clientHeight - window.innerHeight
-  }).addTo(scrollController)
-
-  sceneScrolledBottom.on('enter', (event) => {
-    eventBus.$emit('scrolled-to-bottom')
-  })
-
-  sceneScrolledBottom.on('leave', (event) => {
-    eventBus.$emit('scrolled-from-bottom')
-  })
-}
-
-window.addEventListener('DOMContentLoaded', (event) => {
-  eventBus.$emit('init', event)
-
-  initToggleMenu()
-  initToggleFooter()
-  initSceneScrolledTop()
-  initSceneScrolledBottom()
-
-  eventBus.$on('barba-page-change', (event) => {
-    if (sceneScrolledBottom) {
-      scrollController.removeScene(sceneScrolledBottom)
-      initSceneScrolledBottom()
-    }
-  })
-})
-
-window.addEventListener(
-  'resize',
-  debounce((event) => {
-    eventBus.$emit('window-resized', event)
-  }, 400)
-)
+export const siteManager = new SiteManager();

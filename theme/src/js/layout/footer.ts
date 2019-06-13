@@ -1,11 +1,10 @@
-import { easing, tween, ColdSubscription } from 'popmotion';
+import anime from 'animejs/lib/anime.es';
 import { eventBus, config } from '../core';
 import { documentOffset } from '../utilities';
 
 class Footer {
   element: HTMLElement;
   wrapper: HTMLElement;
-  animation: ColdSubscription;
 
   constructor() {}
 
@@ -20,14 +19,9 @@ class Footer {
 
   pin() {
     this.element.classList.add('pinned');
-    this.element.style.position = 'fixed';
-    this.element.style.bottom = '0';
   }
 
   unpin() {
-    if (this.animation) {
-      this.animation.stop();
-    }
     this.element.classList.remove('pinned');
     this.element.removeAttribute('style');
   }
@@ -48,16 +42,12 @@ class Footer {
       -1 * (this.element.clientHeight - offset) + 'px';
     this.element.style.position = 'fixed';
 
-    this.animation = tween({
-      from: this.element.clientHeight - offset,
-      to: 0,
-      duration: config.animation.duration.short,
-      ease: easing.circOut
-    }).start({
-      update: (v) => {
-        this.element.style.bottom = -1 * v + 'px';
-      },
-      complete: () => {
+    anime({
+      targets: this.element,
+      bottom: [-1 * this.element.clientHeight - offset, 0],
+      duration: config.animation.duration.medium,
+      easing: 'easeOutQuad',
+      complete: (anim) => {
         this.element.classList.remove('animating');
         this.pin();
       }
@@ -65,9 +55,7 @@ class Footer {
   }
 
   slideOut() {
-    this.element.classList.add('animating');
-    this.element.style.position = 'fixed';
-    this.element.style.bottom = '0';
+    this.element.classList.add('animating', 'pinned');
 
     let scrollOffsetBottom = window.scrollY + window.innerHeight;
     let offset = Math.max(
@@ -75,19 +63,14 @@ class Footer {
       0
     );
 
-    this.animation = tween({
-      from: 0,
-      to: this.element.clientHeight - offset,
+    anime({
+      targets: this.element,
+      bottom: [0, -1 * this.element.clientHeight - offset],
       duration: config.animation.duration.short,
-      ease: easing.circIn
-    }).start({
-      update: (v) => {
-        this.element.style.bottom = -1 * v + 'px';
-      },
-
-      complete: () => {
-        this.unpin();
+      easing: 'easeOutQuad',
+      complete: (anim) => {
         this.element.classList.remove('animating');
+        this.unpin();
       }
     });
   }
@@ -107,8 +90,8 @@ class Footer {
     });
 
     eventBus.$on('scrolled-to-bottom', (event) => {
-      this.unpin()
-    })
+      this.unpin();
+    });
   }
 }
 

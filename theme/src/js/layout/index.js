@@ -1,8 +1,8 @@
-import { eventBus } from '../core'
+import { eventBus } from '@/js/core'
 import { header } from './header.ts'
 import { navMenu } from './nav-menu.ts'
 import { footer } from './footer.ts'
-import { barbaManager } from './barba'
+import { barbaManager } from './barba-manager'
 
 function initHeader() {
   let headerElement = document.querySelector('.header-main')
