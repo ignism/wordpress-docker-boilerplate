@@ -1,28 +1,19 @@
 import './css/style.css'
-import './js/main.js'
-import './js/components/images'
-import './js/layout'
 
+import 'zenscroll'
 
+import './js/anime'
 
-// EXAMPLE: integrate Vue components
-//
-// import Vue from 'vue'
-// import Button from './js/vue/button.vue'
-// import Counter from './js/vue/counter.vue'
-//
-// let buttons = Array.from(document.querySelectorAll('.button'))
-// buttons.forEach((button) => {
-//   new Vue({
-//     render: (h) => h(Button)
-//   }).$mount(button)
-// })
-//
-// let counters = Array.from(document.querySelectorAll('.counter'))
-// counters.forEach((counter) => {
-//   new Vue({
-//     render: (h) => h(Counter)
-//   }).$mount(counter)
-// })
-//
-// END EXAMPLE
+import { core } from './js/core'
+import { header, nav, footer, barbaManager } from './js/layout'
+import { images } from './js/components'
+
+;(function() {
+  core.attach(header, { element: document.querySelector('.header-main') })
+  core.attach(nav, { element: document.querySelector('.nav-main') })
+  // core.attach(footer, true)
+  core.attach(barbaManager)
+
+  core.attach(images, {}, true)
+  core.init()
+})()
