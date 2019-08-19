@@ -2,8 +2,6 @@ import './css/style.css'
 
 import 'zenscroll'
 
-import './js/anime'
-
 import { core } from './js/core'
 import { header, nav, footer, barbaManager } from './js/layout'
 import { images } from './js/components'

@@ -1,0 +1,19 @@
+.anime-wrapper {
+  &::before {
+    content: attr(data-text);
+    color: transparent;
+  }
+  .anime-after {
+    @apply bg-white;
+    position: absolute;
+    color: transparent;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    z-index: +1;
+  }
+  .anime-lines {
+    @apply absolute top-0 left-0 bg-white w-full;
+    height: 1em;
+  }
+}

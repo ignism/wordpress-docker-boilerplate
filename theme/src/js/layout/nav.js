@@ -12,7 +12,7 @@ class Nav extends CoreModule {
       toggle.addEventListener('click', this.onToggle)
     })
 
-    this.closers = document.querySelectorAll('.close-menu')
+    this.closers = document.querySelectorAll('.nav-menu-item')
     this.closers.forEach((closer) => {
       closer.addEventListener('click', this.onClose)
     })
