@@ -13,11 +13,8 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new CopyWebpackPlugin([{
-      from: 'theme/public',
+      from: 'theme/includes',
       to: ''
-    }, {
-      from: 'theme/vendor',
-      to: 'vendor'
     }]),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -96,7 +93,7 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, 'wp-content/themes', config.slug),
+    path: path.resolve(__dirname, 'server/wp-content/themes', config.slug),
     filename: 'js/[name].js'
   },
 

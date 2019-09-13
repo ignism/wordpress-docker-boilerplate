@@ -95,28 +95,15 @@ class TimberTailwind extends Timber\Site
         add_theme_support('menus');
     }
 
-        /** This is where you add some context
+    /** This is where you add some context
      *
      * @param string $context context['this'] Being the Twig's {{ this }}
      */
     public function add_to_context($context)
     {
-        $context['site'] = $this;
-        
+        $context['value'] = 'I am a value set in your functions.php file';
         $context['menu'] = new Timber\Menu();
-
-        $widgets = Timber::get_posts(array(
-            'post_type' => 'widget', // Get post type project
-            'posts_per_page' => -1, // Get all posts
-        ));
-
-        $context['widgets'] = $widgets;
-
-        foreach ($widgets as $widget) {
-            if ($widget->post_name == 'footer') {
-                $context['footer_widget'] = $widget;
-            }
-        }
+        $context['site'] = $this;
 
         return $context;
     }
@@ -171,10 +158,10 @@ class TimberTailwind extends Timber\Site
 
     public function load_admin_scripts()
     {
-        wp_enqueue_style( 'admin', get_template_directory_uri() .'/css/admin.css', array(), false, 'all' );
+        wp_enqueue_style('admin', get_template_directory_uri() .'/css/admin.css', array(), false, 'all');
     }
 
-            /** This is where you can add your own functions to twig.
+    /** This is where you can add your own functions to twig.
      *
      * @param string $twig get extension
      */
@@ -186,7 +173,6 @@ class TimberTailwind extends Timber\Site
         return $twig;
     }
 
-
     /** This Would return 'foo bar!'.
      *
      * @param string $text being 'foo', then returned 'foo bar!'
@@ -197,6 +183,5 @@ class TimberTailwind extends Timber\Site
 
         return $text;
     }
-
 }
 new TimberTailwind();

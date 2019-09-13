@@ -13,7 +13,7 @@ module.exports = merge(common, {
 
   plugins: [
     new BundleAnalyzerPlugin(),
-    new CleanWebpackPlugin(path.resolve(__dirname, 'wp-content/themes', config.slug)),
+    new CleanWebpackPlugin(path.resolve(__dirname, 'server/wp-content/themes', config.slug)),
   ],
 
   optimization: {

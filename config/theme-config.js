@@ -89,7 +89,7 @@ function generateStyleCSS () {
 
   let file = 'style.css'
 
-  fs.writeFile(path.resolve(__dirname, '../theme/public/', file), data, (err) => {
+  fs.writeFile(path.resolve(__dirname, '../theme/includes/', file), data, (err) => {
     if (err)
       console.log(err)
   })
@@ -107,7 +107,7 @@ function generateFunctionsPhp () {
       result = result.toString()
       data = result.replace(/BoilerplateClass/g, config.class)
 
-      fs.writeFile(path.resolve(__dirname, '../theme/public/', file), data, (err) => {
+      fs.writeFile(path.resolve(__dirname, '../theme/includes/', file), data, (err) => {
         if (err)
           console.log(err)
       })
