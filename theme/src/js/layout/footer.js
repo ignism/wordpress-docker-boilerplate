@@ -1,10 +1,13 @@
 import { CoreModule } from '../core/core-module'
 
 class Footer extends CoreModule {
-  init() {
+  init(options) {
+    this.element = options.element
+
     this.toggles = document.querySelectorAll('.toggle-footer')
 
     this.toggles.forEach(toggle => {
+      toggle.element = this.element
       toggle.addEventListener('click', this.onToggle)
     })
 
@@ -19,8 +22,10 @@ class Footer extends CoreModule {
     })
   }
 
-  onToggle() {
+  onToggle(event) {
+    event.preventDefault();
 
+    this.element.classList.toggle('pinned')
   }
 }
 

@@ -1,31 +1,7 @@
-{% if section_tag == "header" %}
+<section class="section {{ section_class|join(' ') }}">
+  <div class="container {{ container_class|join(' ') }}">
 
-  <header class="{{ section_class|join(' ') }}">
-    <div class="container {{ container_class|join(' ') }}">
+    {% block section %}{% endblock %}
 
-      {% block header %}{% endblock %}
-
-    </div>
-  </header>
-
-{% elseif section_tag == "footer" %}
-
-  <footer class="section {{ section_class|join(' ') }}">
-    <div class="container {{ container_class|join(' ') }}">
-
-      {% block footer %}{% endblock %}
-
-    </div>
-  </footer>
-
-{% else %}
-
-  <section class="section {{ section_class|join(' ') }}">
-    <div class="container {{ container_class|join(' ') }}">
-
-      {% block section %}{% endblock %}
-
-    </div>
-  </section>
-
-{% endif %}
+  </div>
+</section>
