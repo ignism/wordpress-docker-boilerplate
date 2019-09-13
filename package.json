@@ -8,10 +8,11 @@
     "build": "webpack --config webpack.prod.js",
     "config": "node config/theme-config.js",
     "dev": "webpack --config webpack.dev.js",
-    "postinstall": "./node_modules/.bin/tailwind init; cd theme; composer i",
+    "postinstall": "./node_modules/.bin/tailwind init; cd theme/includes; composer i",
     "serve": "docker kill $(docker ps -q); docker-compose up -d",
     "stop": "docker-compose down --volumes",
-    "watch": "webpack --config webpack.dev.js --watch"
+    "watch": "webpack --config webpack.dev.js --watch",
+    "rsync": "rsync -r -v --exclude-from=.rsyncexclude \"$(npx json -f './config/rsync.json' 'source')\" \"$(npx json -f './config/rsync.json' 'target')\""
   },
   "author": "",
   "license": "ISC",
@@ -22,11 +23,7 @@
     "@barba/css": "^2.1.10",
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "animejs": "^3.0.1",
-<<<<<<< HEAD
-    "autoprefixer": "^9.6.1",
-=======
     "autoprefixer": "^9.3.1",
->>>>>>> 8b270c0be7dc2a9365ac3f103751082cb768515a
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
@@ -39,10 +36,6 @@
     "mini-css-extract-plugin": "^0.4.4",
     "object-fit-images": "^3.2.4",
     "picturefill": "^3.0.3",
-<<<<<<< HEAD
-    "popmotion": "^8.7.0",
-=======
->>>>>>> 8b270c0be7dc2a9365ac3f103751082cb768515a
     "postcss-advanced-variables": "^3.0.0",
     "postcss-easings": "^2.0.0",
     "postcss-import": "^12.0.1",
