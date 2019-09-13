@@ -152,8 +152,9 @@ class TimberTailwind extends Timber\Site
     {
         wp_enqueue_style('theme', get_template_directory_uri() . '/css/theme.css');
         wp_enqueue_style('fonts', get_template_directory_uri() . '/css/fonts.css');
-        wp_enqueue_script('theme', get_template_directory_uri() . '/js/theme.js', array(), '1.0.0', true);
-        wp_enqueue_script('head', get_template_directory_uri() . '/js/head.js', array(), '1.0.0', false);
+        wp_enqueue_script('theme', get_template_directory_uri() . '/js/theme.js', array(), time(), true);
+        wp_enqueue_script('chunks', get_template_directory_uri() . '/js/chunks.js', array(), time(), true);
+        wp_enqueue_script('head', get_template_directory_uri() . '/js/head.js', array(), time(), false);
     }
 
     public function load_admin_scripts()
@@ -185,3 +186,5 @@ class TimberTailwind extends Timber\Site
     }
 }
 new TimberTailwind();
+
+flush_rewrite_rules();
