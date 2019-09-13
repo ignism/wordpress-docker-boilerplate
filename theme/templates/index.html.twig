@@ -4,34 +4,27 @@
 
 {% block main %}
 
-  {% embed "layout/section.html.twig" with { 
-    section_class: ['bg-gray-400', 'h-screen']
-  } %}
-
-    {% block section %}
+  <section class="section">
+    <div class="container">
 
       <div class="hero header-offset">
         <h1>{{ site.title }}</h1>
       </div>
 
-    {% endblock %}
-
-  {% endembed %}
-
+    </div>
+  </section>
 
   {% for post in posts %}
 
-    {% embed "layout/section.html.twig" %}
-
-      {% block section %}
+    <section class="section">
+      <div class="container">
 
         <a href="{{ post.link }}">
           <h2>{{ post.title }}</h2>
         </a>
 
-      {% endblock %}
-
-    {% endembed %}
+      </div>
+    </section>
 
   {% endfor %}
 

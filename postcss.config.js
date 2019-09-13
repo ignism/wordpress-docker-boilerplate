@@ -2,7 +2,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
   // Specify the paths to all of the template files in your project
   content: [
     './theme/src/**/*.vue', 
-    './theme/includes/templates/**/*.twig'
+    './theme/templates/**/*.twig'
   ],
   whitelistPatterns: [/barba-/],
   whitelistPatternsChildren: [/header-main/],

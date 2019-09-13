@@ -135,12 +135,12 @@ class TimberTailwind extends Timber\Site
     /** This is where you can register custom post types. */
     public function register_post_types()
     {
-        require get_template_directory() . '/includes/post-types.php';
+        require get_template_directory() . '/import/post-types.php';
     }
 
     public function register_advanced_custom_fields()
     {
-        require get_template_directory() . '/includes/advanced-custom-fields.php';
+        require get_template_directory() . '/import/advanced-custom-fields.php';
     }
 
     /** This is where you can register custom taxonomies. */

@@ -2,7 +2,7 @@
   <div id="styleguide-app">
     <section class="section header-offset">
       <div class="container">
-        <h1 class="pt-16">styleguide</h1>
+        <h1>styleguide</h1>
       </div>
     </section>
 

@@ -13,8 +13,11 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new CopyWebpackPlugin([{
-      from: 'theme/includes',
+      from: 'theme/include',
       to: ''
+    }, {
+      from: 'theme/templates',
+      to: 'templates'
     }]),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

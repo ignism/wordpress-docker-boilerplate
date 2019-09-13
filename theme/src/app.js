@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './vue/app.vue'
+import App from './vue/styleguide.vue'
 
 let element = document.querySelector('#app')
 
