@@ -8,7 +8,7 @@
     "build": "webpack --config webpack.prod.js",
     "config": "node config/theme-config.js",
     "dev": "webpack --config webpack.dev.js",
-    "postinstall": "./node_modules/.bin/tailwind init; cd theme/includes; composer i",
+    "postinstall": "./node_modules/.bin/tailwind init; cd theme/include; composer i",
     "serve": "docker kill $(docker ps -q); docker-compose up -d",
     "stop": "docker-compose down --volumes",
     "watch": "webpack --config webpack.dev.js --watch",
