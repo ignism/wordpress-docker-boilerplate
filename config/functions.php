@@ -135,12 +135,12 @@ class BoilerplateClass extends Timber\Site
     /** This is where you can register custom post types. */
     public function register_post_types()
     {
-        require get_template_directory() . '/includes/post-types.php';
+        require get_template_directory() . '/import/post-types.php';
     }
 
     public function register_advanced_custom_fields()
     {
-        require get_template_directory() . '/includes/advanced-custom-fields.php';
+        require get_template_directory() . '/import/advanced-custom-fields.php';
     }
 
     /** This is where you can register custom taxonomies. */
@@ -150,10 +150,11 @@ class BoilerplateClass extends Timber\Site
 
     public function load_scripts()
     {
-        wp_enqueue_style('theme', get_template_directory_uri() . '/css/theme.css');
-        wp_enqueue_style('fonts', get_template_directory_uri() . '/css/fonts.css');
-        wp_enqueue_script('theme', get_template_directory_uri() . '/js/theme.js', array(), '1.0.0', true);
-        wp_enqueue_script('head', get_template_directory_uri() . '/js/head.js', array(), '1.0.0', false);
+      wp_enqueue_style('theme', get_template_directory_uri() . '/css/theme.css');
+      wp_enqueue_style('fonts', get_template_directory_uri() . '/css/fonts.css');
+      wp_enqueue_script('theme', get_template_directory_uri() . '/js/theme.js', array(), time(), true);
+      wp_enqueue_script('chunks', get_template_directory_uri() . '/js/chunks.js', array(), time(), true);
+      wp_enqueue_script('head', get_template_directory_uri() . '/js/head.js', array(), time(), false);
     }
 
     public function load_admin_scripts()
