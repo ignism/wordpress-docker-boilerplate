@@ -82,6 +82,7 @@ function doGenerate () {
 
   generateStyleCSS()
   generateFunctionsPhp()
+  generateWPConfigPhp()
 }
 
 function generateStyleCSS () {
@@ -92,6 +93,29 @@ function generateStyleCSS () {
   fs.writeFile(path.resolve(__dirname, '../theme/include/', file), data, (err) => {
     if (err)
       console.log(err)
+  })
+}
+
+function generateWPConfigPhp () {
+  let data
+
+  let file = '../server/public/wp-config.php'
+  
+  fs.readFile(path.resolve(__dirname, file), 'utf8', (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      result = result.toString()
+      data = result.replace(
+        /define\( 'WP_DEBUG', false \)\;/g, 
+        'define( \'WP_DEBUG\', true );\ndefine( \'WP_HOME\', \'http://localhost:8080\' );\ndefine( \'WP_SITEURL\', \'http://localhost:8080/public\' );'
+      )
+
+      fs.writeFile(path.resolve(__dirname, file), data, (err) => {
+        if (err)
+          console.log(err)
+      })
+    }
   })
 }
 

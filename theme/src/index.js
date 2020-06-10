@@ -1,17 +1,4 @@
-import './css/style.css'
+import './css/style.pcss'
+import './css/fonts.pcss'
 
-import 'zenscroll'
-
-import { core } from './js/core'
-import { header, nav, footer, barbaManager } from './js/layout'
-import { images } from './js/components'
-
-;(function() {
-  core.attach(header, { element: document.querySelector('.header-main') })
-  core.attach(nav, { element: document.querySelector('.nav-main') })
-  core.attach(footer, { element: document.querySelector('.footer-main') })
-  core.attach(barbaManager)
-
-  core.attach(images, {}, true)
-  core.init()
-})()
+import './js/main.js'

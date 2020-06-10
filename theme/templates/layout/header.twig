@@ -1,0 +1,44 @@
+<page-header class="z-30" :is-fixed="false" :hide-on-scroll="false">
+  <template slot="branding">
+    <div class="col branding" @mouseenter="eventBus.$emit('header:hide-submenus')">
+      <a href="{{ site.link }}" class="block" @click="eventBus.$emit('navoverlay:deactivate')">
+        <div class="w-24 md:w-40">
+          <img src="{{ theme.link }}/images/logo-white.png" alt="">
+        </div>
+      </a>
+    </div>
+  </template>
+
+  <template slot="navigation">
+    <div class="col flex-grow row justify-end">
+      {% include "helpers/menu.twig" %}
+    </div>
+  </template>
+
+  <template slot="sub-menus">
+    {# {% for item in menu.items %}
+      {% if item.children %}
+
+      {% set menuIndex = loop.index0 %}
+      <div id="submenu-{{ item.slug }}" class="submenu absolute bg-white inset-0 flex items-start z-0 mb-6">
+        <div class="container">
+          <div class="row">
+            <div class="col mr-{{ menuIndex }}/12">
+              <div class="logo-spacer w-16 md:w-20"></div>
+            </div>
+
+            {% for child in item.children %}
+              
+            <div class="col p2 uppercase font-display-black">
+              <a data-barba-prevent="data-barba-prevent" @click.prevent="eventBus.$emit('link:anchor', { anchor: '{{ child.slug }}', pathname: '{{ site.link}}/{{ item.slug }}/' })" class="underline-in" href="{{ site.link }}/{{ item.slug }}/#{{ child.slug }}">{{ child.title }}</a>
+            </div>
+
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %} #}
+  </template>
+</page-header>

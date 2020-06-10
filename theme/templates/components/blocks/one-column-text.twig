@@ -1,0 +1,35 @@
+{% set color = '' %}
+{% set background = '' %}
+{% if content.color %}
+  {% if content.color|lower != 'transparant' and content.color|lower != 'none'  %}
+    {% set color = 'text-' ~ content.color|lower %}
+    {% if content.color|lower == 'gray' %}
+      {% set color = 'text-orange' %}
+      {% set background = 'bg-gray' %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% set width = '50' %} 
+{% if content.width %}
+  {% set width = content.width %}
+{% endif %}
+
+{% set widthSizes = 'w-full' %}
+{% if width == '50' %}
+  {% set widthSizes = 'w-full md:w-8/12 lg:w-6/12 2xl:w-5/12' %} 
+{% endif %}
+
+<section class="section {{ background }} {{ color }}">
+  <div class="container">
+
+    <div class="row">
+    <scroll-trigger>
+      <div class="col p1 {{ widthSizes }} mx-auto">
+        {{ content.text }}
+      </div>
+    </scroll-trigger>
+    </div>
+
+  </div>
+</section>

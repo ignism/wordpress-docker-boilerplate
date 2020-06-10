@@ -1,0 +1,14 @@
+<section class="hero">
+  <div class="relative w-full h-full">
+    {% include "components/video-player.twig" with {
+      video: content.video,
+      thumbnail: content.thumbnail
+    } %}
+
+    <div class="absolute right-0 bottom-0 text-white z-20">
+        <div class="container section-m-b">
+          <a href="{{ site.link }}/apply-now" class="button button-inverse">Apply Now</a>
+        </div>
+    </div>
+  </div>
+</section>

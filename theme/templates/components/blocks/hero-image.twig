@@ -1,0 +1,16 @@
+<section class="hero h-screen">
+  <div class="relative w-full h-full">
+    <div class="absolute w-full h-full z-10">
+      {% include "components/lazy-image.twig" with {
+          ratio: 'fit',
+          image: content.image
+        } %}
+
+        <div class="absolute right-0 bottom-0 text-white z-20">
+            <div class="container section-m-b">
+              <a href="{{ site.link }}/apply-now" class="button button-inverse">Apply Now</a>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>

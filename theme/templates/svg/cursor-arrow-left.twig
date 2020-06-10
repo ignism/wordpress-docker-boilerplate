@@ -1,0 +1,13 @@
+{% if id is not defined %}
+  {% set id = "" %}
+{% endif %}
+
+{% if class is not defined %}
+  {% set class = [] %}
+{% endif %}
+
+<svg id="{{ id }}" class="fill-current {{ class|join(' ') }}" width="100%" height="100%" viewbox="0 0 40 41" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+  <g fill-rule="evenodd">
+    <path d="M20.0366763,0.334115219 L22.2180164,2.54224414 L6.18431442,18.7721152 L40.2793144,18.7727323 L40.2793144,21.8954982 L6.18331442,21.8951152 L22.2180164,38.1259863 L20.0366763,40.3341152 L0.279314422,20.3341152 L20.0366763,0.334115219 Z" fill-rule="nonzero"></path>
+  </g>
+</svg>

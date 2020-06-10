@@ -1,0 +1,47 @@
+{% if size is not defined %}
+  {% set size = "landscape" %}
+{% endif %}
+{% if ratio is not defined %}
+  {% set ratio = "strict" %}
+{% endif %}
+{% if sizes is not defined %}
+  {% set sizes = "" %}
+{% endif %}
+{% if alt is not defined %}
+  {% set alt = "image" %}
+{% endif %}
+
+{% if image is not defined or image == false %}
+  {# randomized dummy image #}
+  {% set index = random(2) %}
+  {% set bg = ["cbd5e0", "a0aec0", "718096", "4a5568"] %}
+  {% set text = ["e2e8f0", "cbd5e0", "a0aec0", "718096"] %}
+  {% if size == "landscape" %}
+    {% set dataSrc = "https://dummyimage.com/1280x720/" ~ bg[index] ~ "/" ~ text[index] ~ ".png&text=placeholder" %}
+    {% set dataSrcset = "https://dummyimage.com/1280x720/" ~ bg[index] ~ "/" ~ text[index] ~ ".png&text=placeholder 1280w, https://dummyimage.com/2560x1440/" ~ bg[index] ~ "/" ~ text[index] ~ ".png&text=placeholder 2560w" %}
+    {% set lazySrc = "https://dummyimage.com/640x360/" ~ bg[index] ~ "/" ~ text[index] ~ ".png&text=placeholder" %}
+  {% else %}
+    {% set dataSrc = "https://dummyimage.com/720x1280/" ~ bg[index] ~ "/" ~ text[index] ~ ".png&text=placeholder 720w, https://dummyimage.com/1440x2560/" ~ bg[index] ~ "/" ~ text[index] ~ ".png&text=placeholder 1440w" %}
+    {% set dataSrcset = "https://dummyimage.com/720x1280/" ~ bg[index] ~ "/" ~ text[index] ~ ".png&text=placeholder" %}
+    {% set lazySrc = "https://dummyimage.com/360x640/" ~ bg[index] ~ "/" ~ text[index] ~ ".png&text=placeholder" %}
+  {% endif %}
+
+{% else %}
+  {% set timmySize = size ~ '-cropped' %}
+  {% set lazySize = 'lazy-' ~ size %}
+
+  {% set timmyImage = image | get_timber_image_responsive_src(timmySize, {
+    lazy_srcset: true,
+    lazy_src: true,
+  }) %}
+
+
+  {% set lazySrc = image|get_timber_image_src(lazySize) %}
+  {% set sizes = timmyImage|getSizesContents %}
+  {% set dataSrc = timmyImage|getDataSrcContents %}
+  {% set dataSrcset = timmyImage|getDataSrcsetContents %}
+{% endif %}
+
+<figure class="{{ ratio }} {{ size }}">
+  <lazy-image src="{{ lazySrc }}" sizes="{{ sizes }}" data-src="{{ dataSrc }}" data-srcset="{{ dataSrcset }}" alt="{{ alt }}"></lazy-image>
+</figure>

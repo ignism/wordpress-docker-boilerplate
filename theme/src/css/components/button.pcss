@@ -1,0 +1,24 @@
+.button {
+  @apply inline-block border border-black bg-transparent text-black rounded-full;
+  text-transform: uppercase;
+  padding: .5em 1em;
+  margin: 1em;
+  transition: background $medium ease, color $medium ease;
+
+  &:hover {
+    @apply bg-black text-white;
+  }
+
+  &::after {
+    content: none;
+  }
+
+  &.button-inverse {
+    @apply inline-block border border-black bg-black text-white rounded-full;
+    transition: background $medium ease, color $medium ease, border $medium ease;
+
+    &:hover {
+      @apply bg-white text-black border-white;
+    }
+  }
+}

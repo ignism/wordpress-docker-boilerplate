@@ -1,0 +1,30 @@
+{% set color = "" %}
+{% set background = "" %}
+{% if content.color %}
+  {% if content.color | lower != "transparant" and content.color | lower != "none" %}
+    {% set color = 'text-' ~ content.color|lower %}
+    {% if content.color | lower == "gray" %}
+      {% set color = 'text-orange' %}
+      {% set background = 'bg-gray' %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+<section class="section {{ background }}">
+  <div class="container">
+
+    <div class="row items-{{ content.horizontal_alignment }}">
+      <div class="col w-full mx-auto mb-6 md:mb-0 md:w-6/12 {{ color }} 2xl:w-5/12 2xl:mr-0">
+        <scroll-trigger>
+          {{ content.text_left }}
+        </scroll-trigger>
+      </div>
+      <div class="col w-full mx-auto md:w-6/12 2xl:w-5/12 2xl:ml-0">
+        <scroll-trigger :delay="100">
+          {{ content.text_right }}
+        </scroll-trigger>
+      </div>
+    </div>
+
+  </div>
+</section>

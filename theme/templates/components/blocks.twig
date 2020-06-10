@@ -1,0 +1,78 @@
+{% for item in blocks %}
+
+  {% if loop.first %}
+    {% if item.acf_fc_layout == 'one_column_text' or 
+          item.acf_fc_layout == 'two_column_text' or 
+          item.acf_fc_layout == 'cta_button'%}
+      <div class="page-header-offset"></div>
+    {% endif %}
+  {% endif %}
+  {% if item.acf_fc_layout == "hero_image" %}
+
+    {% include "components/blocks/hero-image.twig" with {
+      content : item
+    } %}
+
+  {% elseif item.acf_fc_layout == "hero_video" %}
+
+    {% include "components/blocks/hero-video.twig" with {
+      content : item
+    } %}
+
+  {% elseif item.acf_fc_layout == 'one_column_text' %}
+
+    {% include "components/blocks/one-column-text.twig" with {
+      content: item 
+    } %}
+
+  {% elseif item.acf_fc_layout == 'two_column_text' %}
+
+    {% include "components/blocks/two-column-text-50-50.twig" with {
+      content: item 
+    } %}
+  
+  {% elseif item.acf_fc_layout == 'two_column_text_75_25' %}
+
+    {% include "components/blocks/two-column-text-75-25.twig" with {
+      content: item 
+    } %}
+
+  {% elseif item.acf_fc_layout == 'four_column_text' %}
+
+    {% include "components/blocks/four-column-text.twig" with {
+      content: item 
+    } %}
+
+  {% elseif item.acf_fc_layout == 'landscape_images' %}
+
+    {% include "components/blocks/landscape-images.twig" with {
+      content: item 
+    } %}
+
+  {% elseif item.acf_fc_layout == 'portrait_images' %}
+
+    {% include "components/blocks/portrait-images.twig" with {
+      content: item 
+    } %}
+  
+  {% elseif item.acf_fc_layout == 'portrait_images_text' %}
+
+    {% include "components/blocks/portrait-images-text.twig" with {
+      content: item 
+    } %}
+
+  {% elseif item.acf_fc_layout == 'cta_button' %}
+
+    {% include "components/blocks/cta-button.twig" with {
+      content: item 
+    } %}
+
+  {% elseif item.acf_fc_layout == 'video' %}
+
+    {% include "components/blocks/video.twig" with {
+      content : item
+    } %}
+
+  {% endif %}
+
+{% endfor %}

@@ -1,0 +1,160 @@
+/* purgecss start ignore */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply font-sans;
+  @apply leading-snug;
+}
+
+b,
+strong {
+  @apply font-display-black uppercase;
+}
+
+p:not(:last-of-type) {
+  margin-bottom: 1em;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-display-black;
+  letter-spacing: -0.03em;
+}
+
+h1,
+.h1 {
+  @apply text-4xl uppercase text-center;
+  line-height: 1em;
+}
+h2,
+.h2 {
+  @apply text-xl;
+  line-height: 1.2em;
+}
+h3,
+.h3 {
+  @apply text-xl;
+  line-height: 1.2em;
+}
+
+p,
+.p1 {
+  @apply text-base;
+  line-height: 1.375em;
+  letter-spacing: -0.025em;
+}
+
+.p2,
+.p2 p {
+  @apply text-base;
+  line-height: 1.375em;
+  letter-spacing: -0.025em;
+}
+
+.p3,
+.p3 p {
+  @apply text-xs;
+  line-height: 1.375em;
+  letter-spacing: -0.025em;
+}
+
+@screen md {
+  h1,
+  .h1 {
+    @apply text-5xl;
+  }
+
+  h2,
+  .h2 {
+    @apply text-3xl;
+  }
+
+  h3,
+  .h3 {
+    @apply text-xl;
+  }
+
+  p,
+  .p1 {
+    @apply text-lg;
+  }
+
+  .p2,
+  .p2 p {
+    @apply text-base;
+  }
+
+  .p3,
+  .p3 p {
+    @apply text-xs;
+  }
+}
+
+@screen lg {
+  h1,
+  .h1 {
+    @apply text-6xl;
+  }
+
+  h2,
+  .h2 {
+    @apply text-4xl;
+  }
+
+  h3,
+  .h3 {
+    @apply text-2xl;
+  }
+
+  p,
+  .p1 {
+    @apply text-xl;
+  }
+
+  .p2,
+  .p2 p {
+    @apply text-base;
+  }
+
+  .p3,
+  .p3 p {
+    @apply text-sm;
+  }
+}
+
+@screen 2xl {
+  h1,
+  .h1 {
+    @apply text-6xl;
+  }
+
+  h2,
+  .h2 {
+    @apply text-4xl;
+  }
+
+  h3,
+  .h3 {
+    @apply text-2xl;
+  }
+
+  p,
+  .p1 {
+    @apply text-xl;
+  }
+
+  .p2,
+  .p2 p {
+    @apply text-lg;
+  }
+
+  .p3,
+  .p3 p {
+    @apply text-sm;
+  }
+}
+/* purgecss end ignore */

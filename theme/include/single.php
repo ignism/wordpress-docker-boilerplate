@@ -12,6 +12,6 @@ $context = Timber::context();
 $timber_post = Timber::query_post();
 $context['post'] = $timber_post;
 
-$templates = array( 'posts/' . $timber_post->ID . '.html.twig', 'posts/' . $timber_post->post_type . '.html.twig', 'posts/post.html.twig' );
+$templates = array( 'views/_' . $timber_post->ID . '.twig', 'views/_' . $timber_post->post_type . '.twig', 'views/index.twig' );
 
 Timber::render($templates, $context);

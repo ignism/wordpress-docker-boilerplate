@@ -1,0 +1,16 @@
+<section class="section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col w-full mx-auto">
+
+        {% include "components/video-player.twig" with {
+          video: content.video,
+          thumbnail: content.thumbnail
+        } %}
+
+      </div>
+    </div>
+
+  </div>
+</section>

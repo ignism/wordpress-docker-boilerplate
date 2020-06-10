@@ -1,0 +1,12 @@
+<video-player source="{{ content.video }}" type="video/mp4">
+  <div class="absolute inset-0 z-10 text-white flex justify-center items-center">
+    <div class="w-12">
+      {% include "svg/play.twig" %}
+    </div>
+  </div>
+
+  {% include "components/lazy-image.twig" with {
+    ratio: 'fit',
+    image: content.thumbnail
+  } %}
+</video-player>    

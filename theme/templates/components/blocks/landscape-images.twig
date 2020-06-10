@@ -1,0 +1,18 @@
+<section class="section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col w-full mx-auto">
+
+        <scroll-trigger>
+          {% include "components/slider.twig" with {
+            navigation : "false",
+            slides: content.images
+          } %}
+        </scroll-trigger>
+
+      </div>
+    </div>
+
+  </div>
+</section>

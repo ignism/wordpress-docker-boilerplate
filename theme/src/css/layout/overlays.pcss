@@ -1,0 +1,38 @@
+body.js-nav-active,
+body.js-modal-active {
+  @apply overflow-hidden w-screen h-screen fixed;
+}
+
+#nav-overlay {
+  @apply bg-black text-white transition-transform duration-medium ease-in-out;
+  transform: translateY(-100vh);
+
+  &.js-active {
+    transform: translateY(0);
+  }
+
+  .menu {
+    @apply flex flex-col w-full justify-center items-center text-xl my-6;
+
+    li {
+      @apply ml-auto mr-auto my-4;
+    }
+  }
+
+  .menu-button {
+      @apply px-2 py-2 bg-white text-black;
+      &:hover {
+        @apply bg-black text-white;
+        &::after {
+          @apply bg-transparent;
+        }
+      }
+    }
+}
+
+
+@screen lg {
+  #nav-overlay {
+    @apply hidden;
+  }
+}

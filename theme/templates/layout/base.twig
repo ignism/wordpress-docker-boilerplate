@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "helpers/metadata.twig" %}
+    
+    {{ function('wp_head') }}
+
+    {% include "helpers/js.twig" %}
+    {% include "helpers/css.twig" %}
+    
+  </head>
+
+  <body class="bg-white text-black" data-barba="wrapper">
+    {# <div id="critical-html">
+      {% include "views/_critical-html.twig" %}
+    </div> #}
+
+    <div id="pre-loader" style="background: white; width: 100%; height: 100vh;"></div>
+
+    <div id="app" style="opacity: 0">
+      <div class="min-h-screen">
+        {% include "layout/header.twig" %}
+
+        <main data-barba="container">
+          {% block main %}{% endblock %}
+        </main>
+
+        <div class="section-m-b"></div>
+      </div>
+
+      {% include "layout/footer.twig" %}
+      {% include "layout/overlays.twig" %}
+      {% include "components/custom-cursor.twig" %}
+
+    </div>
+
+    {{ "main.js"|includeJS }}
+
+    {{ function('wp_footer') }}
+
+  </body>
+</html>

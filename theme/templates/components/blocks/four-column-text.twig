@@ -1,0 +1,23 @@
+<section class="section-m-t">
+  <div class="container">
+
+    <div class="row">
+      {% for item in content.items %}
+        {% set delay = (loop.index0 % 4) * 100 %}
+
+        <div class="col section-m-b w-full md:w-6/12 lg:w-3/12">
+          <scroll-trigger :delay="{{ delay }}">           
+            <p class="uppercase font-display-black">{{ item.header }}</p>
+
+            <div class="mt-4 p2">
+              {{ item.text }}
+            </div>
+          </scroll-trigger>
+
+        </div>
+
+      {% endfor %}
+    </div>
+
+  </div>
+</section>

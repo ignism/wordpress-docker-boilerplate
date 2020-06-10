@@ -1,0 +1,34 @@
+a {
+  @apply relative uppercase font-display-black;
+  &::after {
+    @apply bg-black w-full absolute block bottom-0 left-0;
+    content: '';
+    height: 2px;
+    transform: translateY(0.1em);
+    transition: background $medium ease;
+  }
+
+  &.underline-in {
+    @apply relative;
+
+    &::after {
+      @apply bg-transparent w-full absolute block bottom-0 left-0;
+      content: '';
+      height: 2px;
+      transform: translateY(0.1em);
+      transition: background $medium ease;
+    }
+
+    /* &.underline-bold {
+      &::after {
+        height: 2px;
+      }
+    } */
+
+    &:hover{
+      &::after {
+        @apply bg-black;
+      }
+    }
+  }
+}

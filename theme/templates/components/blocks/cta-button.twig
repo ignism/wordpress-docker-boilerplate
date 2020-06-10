@@ -1,0 +1,36 @@
+{% set color = "" %}
+{% set background = "" %}
+{% if content.color %}
+  {% if content.color | lower != "transparant" and content.color | lower != "none" %}
+    {% set background = 'bg-' ~ content.color|lower %}
+    {% if content.color | lower == "gray" %}
+      {% set color = 'text-orange' %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+<section class="section {{ background }}">
+  <div class="container">
+
+    <div class="row">
+      <div class="col w-full mx-auto flex flex-wrap justify-center items-center">
+        <div class="w-full">
+          <scroll-trigger>
+            <p class="text-center p3 font-display-black uppercase">{{ content.header }}</p>
+          </scroll-trigger>
+        </div>
+        <div class="w-full text-center my-8 md:my-20 {{ color }}">
+          <scroll-trigger>
+            {{ content.text }}
+          </scroll-trigger>
+        </div>
+        <div class="w-full text-center">
+          <scroll-trigger>
+            <a href="{{ content.button.link }}" class="button p1 font-display-black uppercase mt-8">{{ content.button.caption }}</a>
+          </scroll-trigger>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

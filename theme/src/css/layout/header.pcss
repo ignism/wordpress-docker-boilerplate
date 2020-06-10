@@ -1,20 +1,164 @@
-.header-offset {
-  padding-top: 120px;
+@define-mixin page-header-offset $size {
+  padding-top: $page-header-height-$(size);
 }
 
-.header-main {
-  @apply fixed w-full flex items-center;
+.page-header-offset {
+  @mixin page-header-offset sm;
 }
 
-.header-main {
-  @apply bg-transparent;
-  padding-bottom: calc($site-offset / 2);
-  padding-top: calc($site-offset * 2);
-  transition: $short ease;
-  
+#page-header {
+  a {
+    @apply relative uppercase font-display-black;
+    &::after {
+      @apply bg-transparent w-full absolute block bottom-0 left-0;
+      content: '';
+      height: 2px;
+      transform: translateY(0.1em);
+      transition: background $medium ease;
+    }
+    &:hover {
+      &::after {
+        @apply bg-white;
+      }
+    }
+  }
 
-  &.pinned {
-    @apply bg-white;
-    padding-top: $site-offset;
+  .branding {
+    a::after {
+      content: none;
+    }
+  }
+
+  @apply bg-transparent text-white;
+  height: $page-header-height-sm;
+  transition: background-color $short ease, transform $short ease, padding-top $short ease;
+
+  &.js-fixed {
+    @apply fixed;
+  }
+
+  /* &.js-top {
+    @apply bg-transparent;
+    padding-top: $page-header-padding-sm;
+  } */
+
+  &.js-hide-on-scroll {
+    transform: translateY(calc(-1 * getCalcContent($page-header-height-sm)));
+
+    &.js-pinned {
+      transform: translateY(0);
+    }
+  }
+
+  .menu {
+    @apply hidden;
+
+    .menu-button {
+      @apply px-2 py-2 bg-white text-black;
+      &:hover {
+        @apply bg-black text-white;
+        &::after {
+          @apply bg-transparent;
+        }
+      }
+    }
+  }
+
+  .submenu {
+    @apply pointer-events-none;
+    transform: translateY(0);
+    transition: transform 200ms ease;
+
+    &.js-active {
+      @apply pointer-events-auto;
+      transform: translateY(calc($page-header-height-lg));
+    }
+  }
+
+  .burger {
+    @apply flex flex-col justify-between;
+    width: $burger-width;
+    height: $burger-height;
+
+    span {
+      @apply w-full bg-white transition-transform duration-short ease-in;
+      height: $burger-span;
+      transform-origin: center;
+    }
+    &:not(.js-active):hover {
+      span:first-child {
+        transform: translateY(calc(($burger-height * 0.25) - ($burger-span * 0.5)));
+      }
+
+      span:last-child {
+        transform: translateY(calc(($burger-height * -0.25) - ($burger-span * -0.5)));
+      }
+    }
+    &.js-active {
+      span:first-child {
+        animation: burgerAnimInFromTop $medium ease forwards;
+      }
+
+      span:last-child {
+        animation: burgerAnimInFromBottom $medium ease forwards;
+      }
+    }
+  }
+
+  @keyframes burgerAnimInFromTop {
+    0% {
+      transform: translateY(0) rotate(0);
+    }
+    50% {
+      transform: translateY(calc(($burger-height * 0.5) - ($burger-span * 0.5)));
+    }
+    100% {
+      transform: translateY(calc(($burger-height * 0.5) - ($burger-span * 0.5))) rotate(45deg);
+    }
+  }
+
+  @keyframes burgerAnimInFromBottom {
+    0% {
+      transform: translateY(0) rotate(0);
+    }
+    50% {
+      transform: translateY(calc(($burger-height * -0.5) - ($burger-span * -0.5)));
+    }
+    100% {
+      transform: translateY(calc(($burger-height * -0.5) - ($burger-span * -0.5))) rotate(-45deg);
+    }
+  }
+}
+
+@screen md {
+  .page-header-offset {
+    @mixin page-header-offset md;
+  }
+  #page-header {
+    height: $page-header-height-md;
+
+    &.js-hide-on-scroll {
+      transform: translateY(calc(-1 * getCalcContent($page-header-height-md)));
+    }
+  }
+}
+
+@screen lg {
+  .page-header-offset {
+    @mixin page-header-offset lg;
+  }
+  #page-header {
+    height: $page-header-height-lg;
+
+    &.js-hide-on-scroll {
+      transform: translateY(calc(-1 * getCalcContent($page-header-height-lg)));
+    }
+
+    .menu {
+      @apply flex flex-row;
+    }
+    .burger {
+      @apply hidden;
+    }
   }
 }

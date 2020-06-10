@@ -1,8 +1,28 @@
-version: '3'
+version: '3.7'
 
 services:
-  # database
-  db:
+  web:
+    build:
+        context: './config/docker/web'
+        dockerfile: './Dockerfile'
+    depends_on:
+      - database
+    ports:
+      - '8080:80'
+    volumes: 
+      - ./server/html:/var/www/html
+      - ./server/public:/var/www/html/public
+      - ./server/wp-content/themes:/var/www/html/public/wp-content/themes
+      - ./server/wp-content/uploads:/var/www/html/public/wp-content/uploads
+      - ./server/wp-content/plugins:/var/www/html/public/wp-content/plugins
+    environment:
+      WORDPRESS_DB_HOST: database
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_TABLE_PREFIX: wpdin_
+    links:
+      - database:mysql
+
+  database:
     image: mariadb
     ports:
       - '8082:3306'
@@ -10,32 +30,15 @@ services:
       MYSQL_ROOT_PASSWORD: password
     volumes:
       - ./server/database:/var/lib/mysql
-  # phpmyadmin
+
   phpmyadmin:
     depends_on:
-      - db
+      - database
     image: phpmyadmin/phpmyadmin
     ports:
       - '8081:80'
     environment:
-      PMA_HOST: db
+      PMA_HOST: database
       MYSQL_ROOT_PASSWORD: password 
     links:
-      - db:db
-  # wordpress
-  wordpress:
-    depends_on:
-      - db
-    image: wordpress:latest
-    ports:
-      - '8080:80'
-    volumes: 
-      - ./server/public:/var/www/html
-      - ./server/wp-content/themes:/var/www/html/wp-content/themes
-      - ./server/wp-content/uploads:/var/www/html/wp-content/uploads
-      - ./server/wp-content/plugins:/var/www/html/wp-content/plugins
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_PASSWORD: password
-    links:
-      - db:mysql
+      - database:database

@@ -1,0 +1,72 @@
+{% for item in menu.items %}
+
+  <div class="menu col" >
+    <div class=""
+      {% if item.children %}
+      @mouseenter="eventBus.$emit('header:show-submenu', { submenu: '{{ item.slug }}'})"
+      {% else %}
+      @mouseenter="eventBus.$emit('header:hide-submenus')"
+      {% endif %}
+      >
+      
+      <a class="underline-in font-display-black uppercase {% if loop.last %}menu-button{% endif %}" href="{{ item.link }}" {% if isOverlay %} @click="eventBus.$emit('navoverlay:deactivate')" {% endif %}>{{ item.title }}</a>
+    
+    </div>
+  </div>
+
+  {# <div class="menu col {% if loop.last %}flex-grow{% else %}w-1/12{% endif %}" >
+    <div class="{% if loop.last %}w-full text-right{% endif %}"
+      {% if item.children %}
+      @mouseenter="eventBus.$emit('header:show-submenu', { submenu: '{{ item.slug }}'})"
+      {% else %}
+      @mouseenter="eventBus.$emit('header:hide-submenus')"
+      {% endif %}
+      >
+      
+      <a class="underline-in font-display-black uppercase {% if loop.last %}font-normal{% else %}font-bold{% endif %}" href="{{ item.link }}">{{ item.title }}</a>
+    
+    </div>
+  </div> #}
+
+{% endfor %}
+
+{# <div class="menu col w-1/12">
+      <div class="" @mouseenter="eventBus.$emit('header:hide-submenus')">
+        <a class="underline-in font-header font-bold uppercase" href="{{ site.link }}">about</a>
+      </div>
+    </div>
+    <div class="menu col w-1/12">
+      <div class="" @mouseenter="eventBus.$emit('header:hide-submenus')">
+        <a class="underline-in font-header font-bold uppercase" href="{{ site.link }}/theme">theme</a>
+      </div>
+    </div>
+    <div class="menu col w-2/12">
+      <div class="" @mouseenter="eventBus.$emit('header:show-submenu', { submenu: 'program'})">
+        <a class="underline-in font-header font-bold uppercase" href="{{ site.link }}/program">program</a>
+      </div>
+    </div>
+    <div class="menu col flex-grow">
+      <div class="w-full text-right" @mouseenter="eventBus.$emit('header:hide-submenus')">
+        <a class="underline-in font-header uppercase" href="{{ site.link }}/sign-up">sign up</a>
+      </div>
+    </div> #}
+
+{# <div class="menu w-full">
+  <ul class="flex flex-col lg:flex-row w-full justify-start">
+
+    <li class="" {% if not isOverlay %}@mouseenter="eventBus.$emit('header:hide-submenus')"{% endif %}{% if isOverlay %} @click="eventBus.$emit('navoverlay:deactivate')" {% endif %}>
+      <a class="underline-in font-header font-bold uppercase" href="{{ site.link }}/theme">theme</a>
+    </li>
+
+    <li class="" {% if not isOverlay %}@mouseenter="eventBus.$emit('header:show-submenu', { submenu: 'program'})"{% endif %} {% if isOverlay %} @click="eventBus.$emit('navoverlay:deactivate')" {% endif %}>
+      <a class="underline-in font-header font-bold uppercase" href="{{ site.link }}/program">program</a>
+    </li>
+
+  </ul>
+
+  <ul class="flex flex-col lg:flex-row w-full justify-end">
+    <li class="ml-12" {% if isOverlay %} @click="eventBus.$emit('navoverlay:deactivate')" {% endif %}>
+      <a class="underline-in font-header uppercase" href="{{ site.link }}/sign-up">sign up</a>
+    </li>
+  </ul>
+</div> #}

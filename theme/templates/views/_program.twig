@@ -1,0 +1,24 @@
+{% extends "layout/base.twig" %}
+
+{% block main %}
+
+  {% set children = post|getChildren %}
+
+  {% for item in children %}
+    
+    <section id="{{ item.slug }}" class="section pb-0">
+      <div class="container">
+        <h1 class="h1">{{ item.title }}</h1>
+      </div>
+    </section>
+
+    {% include "components/blocks.twig" with {
+      blocks : item.meta("blocks")
+    } %}
+
+  {% endfor %}
+
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

@@ -1,0 +1,29 @@
+{% if navigation is not defined %}
+  {% set navigation = "false" %}
+{% endif %}
+{% if fullWidth is not defined %}
+  {% set fullWidth = false %}
+{% endif %}
+{% if slideClass is not defined %}
+  {% set slideClass = [] %}
+{% endif %}
+{% if slides is not defined %}
+  {% set slides = [1, 2, 3] %}
+{% endif %}
+
+
+<slider :navigation="{{ navigation }}">
+
+  {% for item in slides %}
+
+    <div class="flickity-slide {{ slideClass|join(' ') }} w-full {% if fullWidth %}is-fw{% endif %}">
+
+      {% include "components/lazy-image.twig" with {
+        image: item.image
+      } %}
+
+    </div>
+
+  {% endfor %}
+
+</slider>

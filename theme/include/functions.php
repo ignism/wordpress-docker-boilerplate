@@ -28,7 +28,7 @@ Timber::$autoescape = false;
  * We're going to configure our theme inside of a subclass of Timber\Site
  * You can move this to its own file and include here via php's include("MySite.php").
  */
-class TimberTailwind extends Timber\Site
+class Academy extends Timber\Site
 {
     /** Add timber support. */
     public function __construct()
@@ -42,6 +42,20 @@ class TimberTailwind extends Timber\Site
         add_action('admin_enqueue_scripts', array( $this, 'load_admin_scripts' ));
         add_action('wp_enqueue_scripts', array( $this, 'load_scripts' ));
         add_filter('get_twig', array($this, 'add_to_twig'));
+        add_filter( 'jpeg_quality', function() { return 95; } );
+        add_filter( 'big_image_size_threshold', '__return_false' );
+
+        add_filter('the_generator', function() { return ''; } );
+        remove_action('wp_head', 'rest_output_link_wp_head', 10);
+        remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+        remove_action('template_redirect', 'rest_output_link_header', 11, 0);
+        remove_action ('wp_head', 'rsd_link');
+        remove_action( 'wp_head', 'wlwmanifest_link');
+        remove_action( 'wp_head', 'wp_shortlink_wp_head');
+        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+        remove_action( 'wp_print_styles', 'print_emoji_styles' );
+        remove_action( 'wp_head', 'feed_links', 2 );
+
         parent::__construct();
     }
 
@@ -101,9 +115,37 @@ class TimberTailwind extends Timber\Site
      */
     public function add_to_context($context)
     {
-        $context['value'] = 'I am a value set in your functions.php file';
         $context['menu'] = new Timber\Menu();
         $context['site'] = $this;
+
+        $args = array(
+            'post_type' => 'global'
+        );
+        $global_posts = Timber::get_posts($args);
+        
+        $globals = array();
+        foreach ($global_posts as $post) {
+            $name = $post->slug;
+            $globals[$name] = $post;
+        }
+
+        $context['globals'] = $globals;
+
+        $args = array(
+            'post_type' => 'tutor'
+        );
+        $context['tutors'] = Timber::get_posts($args);
+
+        $args = array(
+            'post_type' => 'course'
+        );
+        $context['courses'] = Timber::get_posts($args);
+
+        $args = array(
+            'post_type' => 'lecture'
+        );
+        $context['lectures'] = Timber::get_posts($args);
+
 
         return $context;
     }
@@ -111,18 +153,73 @@ class TimberTailwind extends Timber\Site
     public function timmy_sizes($sizes)
     {
         return array(
-            'portrait-50vw' => array(
-                'resize' => array(800, 1200),
-                'srcset' => array(0.5, 2, 3),
+            'thumbnail' => array(
+                'resize' => array(200, 200),
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
+            ),
+            'lazy' => array(
+                'resize' => array(800),
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
+            ),
+            'lazy-landscape' => array(
+                'resize' => array(800, 533),
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
+            ),
+            'lazy-portrait' => array(
+                'resize' => array(533, 800),
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
+            ),
+            'landscape-cropped' => array(
+                'resize' => array(2500, 1666),
+                'srcset' => array(0.5),
+                'sizes' => '100vw',
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
+            ),
+            'landscape' => array(
+                'resize' => array(2500),
+                'srcset' => array(0.5),
+                'sizes' => '100vw',
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
+            ),
+            'portrait-cropped' => array(
+                'resize' => array(1250, 1875),
+                'srcset' => array(0.5),
                 'sizes' => '(min-width: 640px) 50vw, 100vw',
                 'oversize' => array(
                     'allow' => false,
                     'style_attr' => false,
                 ),
             ),
-            'landscape-100vw' => array(
-                'resize' => array(1600, 1066),
-                'srcset' => array(0.5, 2, 3),
+            'portrait' => array(
+                'resize' => array(1250),
+                'srcset' => array(0.5),
+                'sizes' => '(min-width: 640px) 50vw, 100vw',
+                'oversize' => array(
+                    'allow' => false,
+                    'style_attr' => false,
+                ),
+            ),
+            'square' => array(
+                'resize' => array(2500, 2500),
+                'srcset' => array(0.5),
                 'sizes' => '100vw',
                 'oversize' => array(
                     'allow' => false,
@@ -150,11 +247,17 @@ class TimberTailwind extends Timber\Site
 
     public function load_scripts()
     {
-        wp_enqueue_style('theme', get_template_directory_uri() . '/css/theme.css');
-        wp_enqueue_style('fonts', get_template_directory_uri() . '/css/fonts.css');
-        wp_enqueue_script('theme', get_template_directory_uri() . '/js/theme.js', array(), time(), true);
-        wp_enqueue_script('chunks', get_template_directory_uri() . '/js/chunks.js', array(), time(), true);
-        wp_enqueue_script('head', get_template_directory_uri() . '/js/head.js', array(), time(), false);
+        wp_dequeue_style( 'wp-block-library' );
+        wp_dequeue_style( 'wp-block-library-theme' );
+
+        // $manifest = file_get_contents(__DIR__ . '/manifest.json');
+        // $json = json_decode($manifest,true);
+        
+        // $mainJs = $json["main.js"];
+        // $headJs = $json["head.js"];
+       
+        // wp_enqueue_script('main', $mainJs, array(), time(), true);
+        // wp_enqueue_script('head', $headJs, array(), time(), false);
     }
 
     public function load_admin_scripts()
@@ -170,7 +273,14 @@ class TimberTailwind extends Timber\Site
     {
         $twig->addExtension(new Twig_Extension_StringLoader());
         $twig->addFilter(new Twig_SimpleFilter('my_filter', array($this, 'my_filter')));
-
+        $twig->addFilter(new Twig_SimpleFilter('inlineCriticalCSS', array($this, 'inlineCriticalCSS')));
+        $twig->addFilter(new Twig_SimpleFilter('includeCSS', array($this, 'includeCSS')));
+        $twig->addFilter(new Twig_SimpleFilter('includeJS', array($this, 'includeJS')));
+        $twig->addFilter(new Twig_SimpleFilter('getDataSrcsetContents', array($this, 'getDataSrcsetContents')));
+        $twig->addFilter(new Twig_SimpleFilter('getDataSrcContents', array($this, 'getDataSrcContents')));
+        $twig->addFilter(new Twig_SimpleFilter('getSizesContents', array($this, 'getSizesContents')));
+        $twig->addFilter(new Twig_SimpleFilter('getChildren', array($this, 'getChildren')));
+        
         return $twig;
     }
 
@@ -184,7 +294,71 @@ class TimberTailwind extends Timber\Site
 
         return $text;
     }
-}
-new TimberTailwind();
 
-flush_rewrite_rules();
+    public function inlineCriticalCSS($file)
+    {
+        $css = file_get_contents(__DIR__ . '/css/' . $file);
+        
+        $module = '<style type="text/css">'. $css .'</style>';
+        
+        return $module;
+    }
+
+    public function includeCSS($file)
+    {
+        $manifest = file_get_contents(__DIR__ . '/manifest.json');
+        $json = json_decode($manifest,true);
+        
+
+        $module = '<link rel="stylesheet" href="' . $json[$file] . '" media="print" onload="this.media=\'all\'" />'.
+            '<noscript><link rel="stylesheet" href="' . $json[$file] . '"></noscript>';
+        
+        
+        return $module;
+    }
+
+    public function includeJS($file)
+    {
+        $manifest = file_get_contents(__DIR__ . '/manifest.json');
+        $json = json_decode($manifest,true);
+        
+
+        $module = '<script type="text/javascript" src="' . $json[$file] . '"></script>';
+        
+        
+        return $module;
+    }
+
+    public function getDataSrcContents($text)
+    {
+        preg_match('/(?<=\bdata-src=")[^"]*/', $text, $matches);
+        $contents = $matches[0];
+        return $contents;
+    }
+
+    public function getDataSrcsetContents($text)
+    {
+        preg_match('/(?<=\bdata-srcset=")[^"]*/', $text, $matches);
+        $contents = $matches[0];
+        return $contents;
+    }
+
+    public function getSizesContents($text)
+    {
+        preg_match('/(?<=\bsizes=")[^"]*/', $text, $matches);
+        $contents = $matches[0];
+        return $contents;
+    }
+    public function getChildren($parent)
+    {
+        $args = array(
+            'post_type' => 'page',
+            'post_parent' => $parent->ID,
+            'order'          => 'ASC',
+            'orderby' => 'menu_order'
+        );
+
+        return Timber::get_posts($args);
+    }
+}
+new Academy();

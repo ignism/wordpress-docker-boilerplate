@@ -1,0 +1,15 @@
+{# Default page #}
+
+{% extends "layout/base.twig" %}
+
+{% set mainClass = ['page-' ~ entry.slug] %}
+
+{% block main %}
+
+  <div class="page-header-offset"></div>
+  
+  <styleguide></styleguide>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

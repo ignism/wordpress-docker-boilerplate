@@ -1,0 +1,13 @@
+{% extends "layout/base.twig" %}
+
+{% block main %}
+
+    <div class="page-header-offset"></div>
+
+    {% include "components/blocks.twig" with {
+        blocks: post.meta('blocks')
+    } %}
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

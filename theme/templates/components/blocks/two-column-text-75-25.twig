@@ -1,0 +1,23 @@
+<section class="section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col w-full mx-auto text-right mb-4 md:hidden">
+        <scroll-trigger>
+          {{ content.text_right }}
+        </scroll-trigger>
+      </div>
+      <div class="col w-full mx-auto mb-6 md:mb-0 md:w-7/12 lg:w-9/12 2xl:w-8/12 2xl:mr-0">
+        <scroll-trigger :delay="100">
+          {{ content.text_left }}
+        </scroll-trigger>
+      </div>
+      <div class="col hidden md:block mx-auto text-right md:w-5/12 lg:w-3/12 2xl:w-2/12 2xl:ml-0">
+        <scroll-trigger :delay="200">
+          {{ content.text_right }}
+        </scroll-trigger>
+      </div>
+    </div>
+
+  </div>
+</section>

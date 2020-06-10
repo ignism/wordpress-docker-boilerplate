@@ -1,0 +1,21 @@
+<page-footer class="section bg-secondary text-black">
+  <div class="container">
+
+    {% block footer %}
+
+      <div class="row">    
+      <div class="w-1/12 hidden 2xl:block"></div>
+      {% for item in globals.footer.meta('columns') %}
+        
+      <div class="col w-full mb-4 lg:mb-0 md:w-4/12 lg:w-3/12 p3">
+      {{ item.text }}
+      </div>
+
+      {% endfor %}
+
+      </div>
+
+    {% endblock %}
+
+  </div>
+</page-footer>

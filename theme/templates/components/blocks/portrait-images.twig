@@ -1,0 +1,42 @@
+<section class="section">
+  <div class="container">
+
+  {% if content.images|length > 1 %}
+
+    <div class="row">
+        <div class="col w-10/12 mx-auto mb-6 md:w-6/12 lg:w-5/12 lg:ml-1/12">
+      <scroll-trigger>
+          {% include "components/lazy-image.twig" with {
+            image: content.images[0].image,
+            size: 'portrait'
+          } %}
+      </scroll-trigger>
+        </div>
+        <div class="col w-10/12 mx-auto md:w-6/12 lg:w-5/12 lg:mr-1/12">
+      <scroll-trigger :delay="100">
+          {% include "components/lazy-image.twig" with {
+            image: content.images[1].image,
+            size: 'portrait'
+          } %}
+      </scroll-trigger>
+        </div>
+    </div>
+
+  {% elseif content.images|length > 0 %}
+
+    <div class="row">
+      <div class="col w-10/12 mx-auto md:w-6/12 lg:w-5/12">
+      <scroll-trigger>
+        {% include "components/lazy-image.twig" with {
+          image: content.images[0].image,
+          size: 'portrait'
+        } %}
+        </scroll-trigger>
+      </div>
+    </div>
+
+  {% endif %}
+
+
+  </div>
+</section>

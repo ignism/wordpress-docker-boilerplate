@@ -1,0 +1,30 @@
+<section class="section-m-t">
+  <div class="container">
+
+    <div class="row">
+      {% for item in content.items %}
+        {% set delay = (loop.index0 % 3) * 100 %}
+
+        <div class="col w-full md:w-6/12 lg:w-4/12 section-m-b">
+          <scroll-trigger :delay="{{ delay }}">
+            <div class="w-10/12 mx-auto md:w-full">
+              {% include "components/lazy-image.twig" with {
+                  image: item.image,
+                  size: 'portrait'
+                } %}
+            </div>
+            
+            <p class="mt-4 font-display-black uppercase">{{ item.header }}</p>
+
+            <div class="mt-4 p2">
+              {{ item.text }}
+            </div>
+          </scroll-trigger>
+
+        </div>
+
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
